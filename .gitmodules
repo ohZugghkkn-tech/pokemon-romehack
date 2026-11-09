@@ -1,0 +1,3 @@
+[submodule "soulgold"]
+	path = soulgold
+	url = https://github.com/Eemeliri/soulgold.git
