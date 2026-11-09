@@ -40,7 +40,7 @@ Mit eigener Python-Umgebung kann `make PYTHON=.venv/bin/python check` verwendet 
 |---|---|
 | Host-Regressionstests | Lokal erfolgreich; Verfahren in `TESTING.md` |
 | Karten-/Layoutprüfung | Referenzen geprüft; **26 bekannte Größenabweichungen offen**, nicht automatisch repariert |
-| ARM-Build und Zieltests | Eigener CI-Job definiert, Ergebnis noch ausstehend; lokal keine ARM-Toolchain |
+| ARM-Build und Zieltests | CI: ROM-Build auf `main` erfolgreich, `make check-all` fehlgeschlagen (4 Assertions); Ursache dokumentiert, Behebung auf `arena/74dc1344-pokemon-romehack`, grüner Folgelauf ausstehend; lokal keine ARM-Toolchain |
 | Shaderkompilierung / visuelle Abnahme | Ausstehend |
 | Save-Kompatibilität | Ungeprüft |
 | Browserintegration | Separater Test, noch nicht ausgeführt |

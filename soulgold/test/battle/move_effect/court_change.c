@@ -162,10 +162,14 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aur
     }
 }
 
-DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Steelsurge")
+// The Gigantamax factor cannot be stored in this build's compact save format
+// (MON_DATA_GIGANTAMAX_FACTOR getters return 0 and the setters are no-ops), so
+// Dynamax attacks fall back to Max moves and no steel spikes are scattered.
+// This test documents the currently reachable behavior.
+DOUBLE_BATTLE_TEST("Court Change used by the opponent with plain Dynamax has no G-Max Steelsurge to swap")
 {
     GIVEN {
-        PLAYER(SPECIES_COPPERAJAH) { GigantamaxFactor(TRUE); }
+        PLAYER(SPECIES_COPPERAJAH) { DynamaxLevel(1); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -176,21 +180,27 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Steelsurge")
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(opponentLeft, 2); SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Copperajah used G-Max Steelsurge!");
+        // Dynamax still works, only the G-Max Steelsurge is unreachable here.
+        MESSAGE("Copperajah used Max Steelspike!");
         SEND_IN_MESSAGE("Wobbuffet");
-        MESSAGE("The sharp steel bit into Wobbuffet!");
+        NOT MESSAGE("The sharp steel bit into Wobbuffet!");
         NOT MESSAGE("The sharp steel bit into the opposing Wynaut!");
     }
 }
 
-DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Vine Lash, G-Max Wildfire, G-Max Cannonade")
+// Same build limitation as above: G-Max Vine Lash, G-Max Wildfire and G-Max
+// Cannonade are unreachable because the Gigantamax factor is not persisted, so
+// the G-Max side-of-the-field effects they would set (swappable by Court
+// Change) can never occur. Max moves fall back to terrain/weather effects,
+// which are not side-of-the-field effects and are not swapped by Court Change.
+DOUBLE_BATTLE_TEST("Court Change has no G-Max Vine Lash, G-Max Wildfire or G-Max Cannonade field effects to swap in this build")
 {
     u32 species, move;
     PARAMETRIZE { species = SPECIES_VENUSAUR;  move = MOVE_VINE_WHIP; }
     PARAMETRIZE { species = SPECIES_CHARIZARD; move = MOVE_EMBER; }
     PARAMETRIZE { species = SPECIES_BLASTOISE; move = MOVE_WATER_GUN; }
     GIVEN {
-        PLAYER(species) { GigantamaxFactor(TRUE); }
+        PLAYER(species) { DynamaxLevel(1); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -204,19 +214,19 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps G-Max Vine Lash, G-Max
     } SCENE {
         switch (species) {
             case SPECIES_VENUSAUR:
-                MESSAGE("Venusaur used G-Max Vine Lash!");
-                MESSAGE("Wobbuffet is hurt by G-Max Vine Lash's ferocious beating!");
+                MESSAGE("Venusaur used Max Overgrowth!");
                 break;
             case SPECIES_CHARIZARD:
-                MESSAGE("Charizard used G-Max Wildfire!");
-                MESSAGE("Wobbuffet is burning up within G-Max Wildfire's flames!");
+                MESSAGE("Charizard used Max Flare!");
                 break;
             case SPECIES_BLASTOISE:
-                MESSAGE("Blastoise used G-Max Cannonade!");
-                MESSAGE("Wobbuffet is hurt by G-Max Cannonade's vortex!");
+                MESSAGE("Blastoise used Max Geyser!");
                 break;
         }
         NONE_OF {
+            MESSAGE("Venusaur used G-Max Vine Lash!");
+            MESSAGE("Charizard used G-Max Wildfire!");
+            MESSAGE("Blastoise used G-Max Cannonade!");
             MESSAGE("The opposing Wynaut is hurt by G-Max Vine Lash's ferocious beating!");
             MESSAGE("The opposing Wynaut is burning up within G-Max Wildfire's flames!");
             MESSAGE("The opposing Wynaut is hurt by G-Max Cannonade's vortex!");

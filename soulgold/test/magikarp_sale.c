@@ -44,6 +44,7 @@ static void TrySellBoxMon(u8 boxId, u8 boxPosition)
 
 TEST("Magikarp sale removes a valid Magikarp and refreshes party count")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     CreateSaleMon(0, SPECIES_MAGIKARP, 10);
     CreateSaleMon(1, SPECIES_BULBASAUR, 10);
     SetMoney(&gSaveBlock1Ptr->money, 0);
@@ -58,6 +59,7 @@ TEST("Magikarp sale removes a valid Magikarp and refreshes party count")
 
 TEST("Magikarp sale rejects an Egg")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     bool8 isEgg = TRUE;
 
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
@@ -72,6 +74,7 @@ TEST("Magikarp sale rejects an Egg")
 
 TEST("Magikarp sale rejects the last usable Pokemon")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     bool8 isEgg = TRUE;
 
     CreateSaleMon(0, SPECIES_MAGIKARP, 10);
@@ -86,6 +89,7 @@ TEST("Magikarp sale rejects the last usable Pokemon")
 
 TEST("Magikarp sale rejects held Mail without orphaning it")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     u8 mailId;
 
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
@@ -102,6 +106,7 @@ TEST("Magikarp sale rejects held Mail without orphaning it")
 
 TEST("Magikarp sale rejects an ordinary held item")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     u16 heldItem = ITEM_NUGGET;
 
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
@@ -117,6 +122,7 @@ TEST("Magikarp sale rejects an ordinary held item")
 
 TEST("Magikarp sale rejects a payout that would exceed the money cap")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
     CreateSaleMon(1, SPECIES_MAGIKARP, 10);
     SetMoney(&gSaveBlock1Ptr->money, MAX_MONEY - 1999);
@@ -130,6 +136,7 @@ TEST("Magikarp sale rejects a payout that would exceed the money cap")
 
 TEST("Magikarp sale permits a payout that exactly reaches the money cap")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
     CreateSaleMon(1, SPECIES_MAGIKARP, 10);
     SetMoney(&gSaveBlock1Ptr->money, MAX_MONEY - 2000);
@@ -142,6 +149,7 @@ TEST("Magikarp sale permits a payout that exactly reaches the money cap")
 
 TEST("Magikarp sale recognizes a level 100 Magikarp")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
     CreateSaleMon(1, SPECIES_MAGIKARP, MAX_LEVEL);
     SetMoney(&gSaveBlock1Ptr->money, 0);
@@ -154,6 +162,7 @@ TEST("Magikarp sale recognizes a level 100 Magikarp")
 
 TEST("Magikarp sale removes a boxed Magikarp without applying the last party mon guard")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     struct BoxPokemon *boxMon;
 
     CreateSaleMon(0, SPECIES_BULBASAUR, 10);
@@ -170,6 +179,7 @@ TEST("Magikarp sale removes a boxed Magikarp without applying the last party mon
 
 TEST("Magikarp sale recognizes a boxed level 100 Magikarp")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     struct BoxPokemon *boxMon = CreateSaleBoxMon(0, 0, SPECIES_MAGIKARP, MAX_LEVEL);
 
     SetMoney(&gSaveBlock1Ptr->money, 0);
@@ -181,6 +191,7 @@ TEST("Magikarp sale recognizes a boxed level 100 Magikarp")
 
 TEST("Magikarp sale rejects and preserves a boxed held item")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     struct BoxPokemon *boxMon = CreateSaleBoxMon(0, 0, SPECIES_MAGIKARP, 10);
     u16 heldItem = ITEM_NUGGET;
 
@@ -194,6 +205,7 @@ TEST("Magikarp sale rejects and preserves a boxed held item")
 
 TEST("Magikarp sale rejects a boxed Egg")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     struct BoxPokemon *boxMon = CreateSaleBoxMon(0, 0, SPECIES_MAGIKARP, 10);
     bool8 isEgg = TRUE;
 
@@ -206,6 +218,7 @@ TEST("Magikarp sale rejects a boxed Egg")
 
 TEST("Magikarp sale rejects invalid PC coordinates")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     TrySellBoxMon(0, IN_BOX_COUNT);
 
     EXPECT_EQ(gSpecialVar_Result, FALSE);
@@ -213,6 +226,7 @@ TEST("Magikarp sale rejects invalid PC coordinates")
 
 TEST("Magikarp sale command reports its save effect before mutating party data")
 {
+    ZeroPlayerPartyMons(); // Box/party sales share the test runner process; start isolated.
     const u8 *script = OVERWORLD_SCRIPT(
         removegenericmon SPECIES_MAGIKARP;
     );
