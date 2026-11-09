@@ -1,6 +1,6 @@
 # KI → KI: Roadmap bis zum fertigen SoulGold-Spielupdate
 
-Stand: **9. November 2026 (UTC)**. Arbeitsbranch: `arena/1137d45d-pokemon-romehack`. Merge Request: [PR #7](https://github.com/ohZugghkkn-tech/pokemon-romehack/pull/7). **Nicht selbst mergen: Der Nutzer übernimmt den Merge.**
+Stand: **9. November 2026 (UTC)**. Arbeitsbranch: `arena/74dc1344-pokemon-romehack` (nach dem Merge von PR #7). **Nicht selbst mergen: Der Nutzer übernimmt den Merge.**
 
 ## 1. Kurzantwort: Wie weit sind wir?
 
@@ -101,9 +101,8 @@ Berechnung: Summe aus `Gewicht × Phasenstand / 100`. Prozente sind Meilensteins
 **Womit:** GitHub Actions Ubuntu 24.04, ARM GCC/Binutils/Newlib und bestehende Make-Ziele.
 
 - [x] Separater Job mit protokollierten Compilerversionen eingerichtet und gestartet.
-- [ ] Für **aktuellen PR-Commit** Erfolg von `make -j2 all` bestätigen.
-- [ ] Anschließend Erfolg von `make -j2 check-all` bestätigen.
-- [ ] Bei Fehlern konkrete Logs auswerten, Ursache beheben, kompletten Job erneut prüfen.
+- [x] Erfolg von `make -j2 all` auf `main` nach dem PR-#7-Merge bestätigt (Lauf 42618648812).
+- [ ] Erfolg von `make -j2 check-all` **noch nicht** bestätigt: Lauf 42618648812 rot (Exit-Code 2; 2.260 Tests bestanden). Ursachen der vier fehlgeschlagenen Assertions: Gigantamax-/Dynamax-Persistenz ist im kompakten Speicherformat dieses Quellstands nicht implementiert (givemon-Test, zwei Court-Change-Tests), dazu eine reihenfolgeabhängige Magikarp-Box-Testassertion. Analyse und Behebung auf `arena/74dc1344-pokemon-romehack` committet; Erfolg des neuen Laufs noch zu bestätigen.
 - [ ] Erfolgreichen Commit, Lauf-URL und Toolchainversionen im Bericht festhalten.
 
 **Abnahme:** Beide Schritte erfolgreich im selben zu freigebenden Quellstand. Distributionstoolchain ist noch nicht hermetisch fixiert.
@@ -158,21 +157,19 @@ Berechnung: Summe aus `Gewicht × Phasenstand / 100`. Prozente sind Meilensteins
 
 ## 4. Aktueller CI-Snapshot
 
-Direkt am 9. November 2026 über `gh pr view 7 --json statusCheckRollup` geprüft:
+Nach dem Merge von PR #7, geprüft am 9. November 2026 über `gh run view 42618648812` (`main`, Merge-Commit `b22c5e85`):
 
-Lauf [42617887983](https://github.com/ohZugghkkn-tech/pokemon-romehack/actions/runs/42617887983), PR-Codecommit `dc475952`:
-
-| Job | Tatsächlicher Status beim Abruf |
+| Job | Status auf `main` (Lauf 42618648812) |
 |---|---|
 | `host-tests` | **SUCCESS** |
 | `shader-and-browser-tests` | **SUCCESS** |
-| `target-build-and-tests` | **IN_PROGRESS**, kein Erfolg bestätigt |
+| `target-build-and-tests` | **FAILURE** – `make -j2 all` erfolgreich (ROM gebaut), `make -j2 check-all` fehlgeschlagen: 2.260 Tests bestanden, vier Assertions fehlgeschlagen, Exit-Code 2 |
 
-Diese Übergabedokumentation löst nach dem Push einen neuen PR-Lauf aus. **Obiger Snapshot gilt nicht automatisch für den danach neuesten Commit.** Vor Merge erneut prüfen, keine älteren grünen Dependabot-Läufe als ROM-Nachweis verwenden.
+PR #7 wurde gemergt, obwohl seine beiden anderen Jobs beim Merge noch offen bzw. rot waren. Die zuvor in diesem Abschnitt notierte Angabe „IN_PROGRESS“ war zum Zeitpunkt des Abrufs überholt und wird hier ersetzt. Die Behebung der vier Assertions liegt auf `arena/74dc1344-pokemon-romehack`; **deren CI-Lauf ist abzuwarten, bevor Phase 6 weiter gezählt wird.**
 
 ## 5. Sofortige To-do-Reihenfolge für die nächste KI
 
-1. **P0:** `git status` und neuesten PR-Commit prüfen; aktuelle CI abfragen. ARM-Job bis zum tatsächlichen Ergebnis verfolgen. Bei Fehlern zuerst dessen Logs bearbeiten.
+1. **P0:** Aktuellen CI-Lauf der Behebung auf `arena/74dc1344-pokemon-romehack` beobachten (`gh run list` / `gh pr checks`). Bei rotem `make check-all` zuerst den Job-Log lesen und nur belegte Ursachen behandeln. Erst danach mit P1 fortfahren.
 2. **P1:** Mew-Starterpfad untersuchen und den kleinen genehmigten Gameplaytausch mit Tests umsetzen; damit vorherige Buildnachweise nicht als Nachweis der neuen Änderung ausgeben.
 3. **P1:** Ziel-/Save-Ausgangsversion mit Nutzer klären und geeignete Teststände beschaffen. Fehlen sie, diesen Blocker ausdrücklich stehen lassen.
 4. **P1:** GPU-Renderprüfung und Spieltestmatrix ausführen, soweit Laufzeit vorhanden; sonst konkrete fehlende Voraussetzung nennen.

@@ -34,7 +34,7 @@ Er besitzt getrennte Jobs:
 - `host-tests`: führt unseren Host-Runner auf Ubuntu 24.04 mit Python 3.11 und Node 22 aus.
 - `target-build-and-tests`: installiert die ARM-/Host-Abhängigkeiten, protokolliert Compilerversionen und führt in `soulgold/` `make -j2 all` sowie `make -j2 check-all` aus. Keine ROMs werden hochgeladen. Die vorhandenen Upstream-Testwerkzeuge werden dabei ausgeführt; ihre Herkunftshinweise bleiben erhalten.
 
-**Aktueller Stand:** Der Host-Job auf `main` ist erfolgreich; der ARM-Job im Lauf 42616407393 ist gestartet, aber beim Abschluss dieser lokalen Prüfung noch nicht fertig. Kein Build-Erfolg wird daraus abgeleitet. Die Distributionstoolchain ist nicht vollständig hermetisch fixiert. Vor Branchschutz/Freigabe den tatsächlichen Lauf prüfen. Dependabot schlägt Action-/Root-Python-Updates per PR vor; es gibt keinen Auto-Merge.
+**Aktueller Stand:** Auf `main` sind nach dem PR-#7-Merge der Host- und der Shader-/Browser-Job erfolgreich (Lauf 42618648812). Der ARM-Job baute die ROM erfolgreich; `make -j2 check-all` schlug fehl (Exit-Code 2): 2.260 Tests bestanden, vier Assertions scheiterten – drei davon, weil der übernommene Quellstand die Gigantamax-/Dynamax-Persistenz nicht implementiert (`MON_DATA_GIGANTAMAX_FACTOR`/`MON_DATA_DYNAMAX_LEVEL` sind Get-0/Set-No-op), eine reihenfolgeabhängige Magikarp-Testassertion. Die Behebung liegt auf `arena/74dc1344-pokemon-romehack`; der nächste Lauf ist maßgeblich. Die Distributionstoolchain ist nicht vollständig hermetisch fixiert. Vor Branchschutz/Freigabe den tatsächlichen Lauf prüfen. Dependabot schlägt Action-/Root-Python-Updates per PR vor; es gibt keinen Auto-Merge.
 
 ## Separater Browser-Test
 

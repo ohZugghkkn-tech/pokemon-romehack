@@ -22,7 +22,7 @@ Ein grüner Host-Testjob bedeutet nur: Der benannte Host-Testumfang besteht. Es 
 |---|---|
 | Gleichheit zum offiziellen SoulGold-Release | laut Upstream nicht zugesichert; Zielbasis muss ausdrücklich akzeptiert werden |
 | 26 Layoutgrößenabweichungen | exakt inventarisiert, aber inhaltlich nicht geklärt |
-| ARM-Build / vollständige Zieltests | CI-Job eingerichtet, Ausführungsergebnis noch ausstehend; lokal Toolchain nicht vorhanden |
+| ARM-Build / vollständige Zieltests | ROM baut in CI (`main`); `make check-all` fehlgeschlagen (4 Assertions, Ursachen dokumentiert und behoben); grüner Folgelauf ausstehend; lokal keine ARM-Toolchain |
 | Shaderkompilierung / visueller Vergleich | ausstehend |
 | Save-Kompatibilität | ausstehend |
 | Browserintegration | ausstehend; kein Freigabekriterium für reine ROM-Änderungen, aber für Websiteänderungen |

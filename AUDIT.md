@@ -119,3 +119,5 @@ Weiterhin offen: tatsächlicher ARM-CI-Lauf, Layout-Erreichbarkeits-/Datenkorrek
 ## Folgeprüfung vom 9. November 2026
 
 Aktueller Stand: [ausgeführte Folgeprüfung und offene Freigaben](docs/reviews/2026-11-09-followup.md). 136 Hosttests, drei Compiler-Helper-Tests, 16 tatsächliche SPIR-V-Kompilierungen und Browserintegration bei drei Breiten erfolgreich. 26 Größenunterschiede geprüft: sieben bestehende Ausschlüsse, neunzehn Überschusspuffer; keine kurzen ausgegebenen Emerald-Puffer. Reale Mapgenerator-Regressionen und Buildschutz ergänzt, keine Kartendaten oder IDs geändert. ARM-Zielergebnis, Saves und GPU-Bildfreigabe bleiben ohne vollständigen Nachweis offen.
+
+**Späterer Nachtrag vom 9. November 2026:** Nach dem Merge von PR #7 war `make -j2 check-all` auf `main` rot (Lauf 42618648812) – 2.260 Tests bestanden, vier Assertions scheiterten (Gigantamax-/Dynamax-Persistenz in diesem Quellstand nicht implementiert; ein reihenfolgeabhängiger Magikarp-Test). Befunde und Behebung: [Nachtrag im Folgeprüfungs-Bericht](docs/reviews/2026-11-09-followup.md#nachtrag-roter-make-check-all-auf-main-nach-dem-pr-7-merge-später-am-9-november-2026).
