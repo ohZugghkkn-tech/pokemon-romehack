@@ -106,7 +106,7 @@ class ImportantItemExceptionTests(unittest.TestCase):
             IMPORTANT_ITEM_LOCATION_OVERRIDES["ITEM_GRACIDEA"],
             [
                 {
-                    "map": "Goldenrod Flower Shop after showing Shaymin",
+                    "map": "Goldenrod Flower Shop by showing Shaymin",
                     "source": "",
                 }
             ],

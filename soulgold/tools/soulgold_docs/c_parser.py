@@ -115,12 +115,13 @@ def parse_enum_constants(path: Path, prefix: str) -> tuple[dict[str, int], dict[
     return name_to_id, id_to_name
 
 def preprocess_source(source: str, *extra_include_dirs: str) -> str:
-    temp = Path("/tmp/soulgold_docs_preprocess.c")
-    temp.write_text(source, encoding="utf-8")
+    # Read from stdin: a shared /tmp filename races between parallel builds,
+    # leaves stale files behind and is not portable to every supported host.
     include_args = [f"-I{path}" for path in (".", "include", "src", *extra_include_dirs)]
     result = subprocess.run(
-        ["gcc", "-E", "-P", str(temp), *include_args],
+        ["gcc", "-E", "-P", "-x", "c", "-", *include_args],
         cwd=REPO_ROOT,
+        input=source,
         capture_output=True,
         text=True,
     )

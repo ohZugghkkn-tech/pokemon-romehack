@@ -1,0 +1,13 @@
+# Local environments, credentials and generated host-test output.
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.log
+# These outputs should never be committed accidentally from the repository root.
+/*.gba
+/*.elf
+/*.sav
+/*.srm

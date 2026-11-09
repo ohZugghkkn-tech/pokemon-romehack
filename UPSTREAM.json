@@ -1,0 +1,20 @@
+{
+  "soulgold": {
+    "repository": "https://github.com/Eemeliri/soulgold",
+    "tag": "1.2.1",
+    "commit": "e73803309e78231142160b3e1029df884bc8b5f1",
+    "original_git_tree": "ac95c83d62b764c7baa4395efd928f7e518ab90e",
+    "path": "soulgold",
+    "integration": "vendored files, no nested Git repository or submodule",
+    "warning": "Upstream README says source is behind released game; no official-ROM reproducibility claim.",
+    "local_changes": "docs/upstream-changes.md"
+  },
+  "shaders": {
+    "repository": "https://github.com/libretro/slang-shaders",
+    "commit": "2345ee91602a7404d3a1a6a5df6108d7305fdad4",
+    "path": "shaders/upstream",
+    "integration": "unchanged dependency subset",
+    "file_hash_manifest": "shaders/upstream-manifest.json",
+    "license_notes": "shaders/licenses/README.md"
+  }
+}
