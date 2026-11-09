@@ -1,0 +1,11 @@
+{
+  "name": "soulgold-shader-verification",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline GLSL-to-SPIR-V checks, not a RetroArch rendering test",
+  "scripts": {
+    "test": "node --test compile.test.cjs && node compile.cjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": { "@webgpu/glslang": "0.0.15" }
+}

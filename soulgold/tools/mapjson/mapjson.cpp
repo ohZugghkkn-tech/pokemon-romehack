@@ -809,6 +809,21 @@ string generate_layout_headers_text(Json layouts_data, vector<string> &excluded_
             continue;
         if (contains_string(excluded_layouts, json_to_string(layout, "id")))
             continue;
+
+        // The runtime copies width * height u16 cells. Surplus legacy cells
+        // are harmless here, but a short emitted buffer would read past data.
+        int width = layout["width"].int_value();
+        int height = layout["height"].int_value();
+        if (width <= 0 || height <= 0 || width > 65535 || height > 65535)
+            FATAL_ERROR("Invalid layout dimensions for %s.\n", json_to_string(layout, "id").c_str());
+        string blockdata_path = json_to_string(layout, "blockdata_filepath");
+        std::error_code blockdata_error;
+        auto blockdata_size = std::filesystem::file_size(blockdata_path, blockdata_error);
+        auto minimum_size = static_cast<unsigned long long>(width) * height * 2;
+        if (blockdata_error || blockdata_size < minimum_size || blockdata_size % 2 != 0)
+            FATAL_ERROR("Invalid blockdata for %s: %s requires at least %llu bytes of u16 cells.\n",
+                        json_to_string(layout, "id").c_str(), blockdata_path.c_str(), minimum_size);
+
         string layoutName = json_to_string(layout, "name");
         string border_label = layoutName + "_Border";
         string blockdata_label = layoutName + "_Blockdata";

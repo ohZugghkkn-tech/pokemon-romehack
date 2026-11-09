@@ -89,16 +89,17 @@ class SourceChecksTests(unittest.TestCase):
 
     def test_new_size_mismatch_is_rejected(self):
         (self.root / "map.bin").write_bytes(bytes(2))
-        with self.assertRaisesRegex(ValueError, "Layout debt changed"):
+        with self.assertRaisesRegex(ValueError, "Short or non-u16 ROM layout"):
             check_maps(self.root, {})
 
     def test_known_debt_is_exact_not_blanket_permission(self):
-        (self.root / "map.bin").write_bytes(bytes(2))
+        (self.root / "map.bin").write_bytes(bytes(10))
         known = {"LAYOUT_TOWN": {"path": "map.bin", "width": 2, "height": 2,
-                                "actual_bytes": 2, "expected_bytes": 8,
-                                "sha256": hashlib.sha256(bytes(2)).hexdigest()}}
+                                "actual_bytes": 10, "expected_bytes": 8,
+                                "classification": "emitted-surplus-cells",
+                                "sha256": hashlib.sha256(bytes(10)).hexdigest()}}
         self.assertEqual(check_maps(self.root, known), (1, 1, 1))
-        (self.root / "map.bin").write_bytes(b"XX")
+        (self.root / "map.bin").write_bytes(b"X" * 10)
         with self.assertRaisesRegex(ValueError, "Known layout issue changed"):
             check_maps(self.root, known)
 

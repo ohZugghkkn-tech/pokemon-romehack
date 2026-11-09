@@ -115,3 +115,7 @@ Diese Zahlen sind der lokale Stand einschließlich neuer, noch nicht committeter
 Zusätzlich wurden Workflow-/Dependabot-YAML lokal geparst und volle Action-IDs sowie lesende Rechte geprüft (PyYAML 6.0.3 in einer externen Audit-Umgebung). Ein Versuch, actionlint aus einem GitHub-Release zu beziehen, scheiterte am in dieser Umgebung nicht erreichbaren Release-Asset-Host. **Kein actionlint-Erfolg und kein GitHub-CI-Erfolg behauptet.**
 
 Weiterhin offen: tatsächlicher ARM-CI-Lauf, Layout-Erreichbarkeits-/Datenkorrekturen, GPU-/Shaderkompilierung, Save- und Browserintegrationstests sowie Rechteklärung. Kein Commit, Push, PR, Merge oder Release wurde in dieser Gegenprüfung vorgenommen.
+
+## Folgeprüfung vom 9. November 2026
+
+Aktueller Stand: [ausgeführte Folgeprüfung und offene Freigaben](docs/reviews/2026-11-09-followup.md). 136 Hosttests, drei Compiler-Helper-Tests, 16 tatsächliche SPIR-V-Kompilierungen und Browserintegration bei drei Breiten erfolgreich. 26 Größenunterschiede geprüft: sieben bestehende Ausschlüsse, neunzehn Überschusspuffer; keine kurzen ausgegebenen Emerald-Puffer. Reale Mapgenerator-Regressionen und Buildschutz ergänzt, keine Kartendaten oder IDs geändert. ARM-Zielergebnis, Saves und GPU-Bildfreigabe bleiben ohne vollständigen Nachweis offen.

@@ -37,6 +37,44 @@ jobs:
       - name: Run host checks (not a ROM or release approval)
         run: python scripts/check.py
 
+  shader-and-browser-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Compile actual preset stages with pinned glslang
+        run: |
+          npm ci --prefix scripts/shader-tools --ignore-scripts
+          npm test --prefix scripts/shader-tools
+      - name: Install browser test dependencies
+        working-directory: soulgold
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
+      - name: Run browser integration at three viewport widths
+        working-directory: soulgold
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory docs &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          python3 - <<'PYTHON'
+          import time, urllib.request
+          for attempt in range(50):
+              try:
+                  urllib.request.urlopen("http://127.0.0.1:8000/", timeout=1).close()
+                  break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("Documentation server did not become ready")
+          PYTHON
+          node --test tools/soulgold_docs/tests/frontier-browser.test.mjs
+
   target-build-and-tests:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
@@ -63,4 +101,4 @@ jobs:
       - name: Run full target test suite
         run: make -j2 check-all
       # No ROM upload, release publication, secrets, or save fixtures here.
-      # Execution on GitHub is still pending; host checks cannot substitute it.
+      # Inspect the actual run; host checks cannot substitute target results.
