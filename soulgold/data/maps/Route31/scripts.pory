@@ -1,0 +1,239 @@
+raw `
+Route31_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route31_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
+	.byte 0
+
+Route31_OnTransition: 
+	callnative SetTimeBasedEncounters
+	end
+
+Route31_EventScript_Bugcatcher_Wade::
+	trainerbattle_single TRAINER_WADE, Route31_Text_BugCatcherWade1_Seen, Route31_Text_BugCatcherWade1_Beaten
+	msgbox Route31_Text_BugCatcherWade1_After, MSGBOX_AUTOCLOSE
+	end
+
+Route31_EventScript_Youngster::
+	lock
+	faceplayer
+	msgbox Route31_Text_CooltrainerM, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route31_EventScript_SleepyMan::
+	lock
+	faceplayer
+	goto_if_eq VAR_KENYA, 1, Route31_EventScript_SleepyMan_AskForKenya
+	msgbox Route31_Text_SleepyMan, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route31_EventScript_SleepyMan_AskForKenya::
+	msgbox Route31_Text_SleepyManGotMail MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, TRUE, Route31_EventScript_SleepyMan_GiveKenya
+	msgbox Route31_Text_SleepyManFail, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route31_EventScript_SleepyMan_GiveKenya::
+	removenamedmon 1
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Route31_EventScript_SleepyMan_Fail
+	msgbox Route31_Text_HandOverMailMon, MSGBOX_DEFAULT
+	delay 55
+	callnative UpdateFollowingPokemon
+	msgbox Route31_Text_ReadingMail, MSGBOX_DEFAULT
+	msgbox Route31_Text_DescribeNightmare, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_KENYA, 2
+	release
+	end
+
+Route31_EventScript_SleepyMan_Fail::
+	msgbox Route31_Text_SleepyManFail, MSGBOX_DEFAULT
+	release
+	end
+
+
+Route31_EventScript_Boy::
+	lock
+	faceplayer
+	msgbox Route31_Text_Youngster, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route31_EventScript_DarkCaveSign::
+	lock
+	msgbox Route31_Text_DarkCaveSign, MSGBOX_SIGN
+	closemessage
+	release
+	end
+
+Route31_EventScript_Sign::
+	lock
+	msgbox Route31_Text_Sign, MSGBOX_SIGN
+	closemessage
+	release
+	end
+
+Route31_EventScript_ItemPokeBall::
+	finditem ITEM_POKE_BALL
+	end
+
+Route31_EventScript_ItemAntidote::
+	finditem ITEM_ANTIDOTE
+	end
+
+Route31_Text_CooltrainerM:
+	.string "Dark Cave…\p"
+	.string "If Pokémon could light it up,\n"
+	.string "I'd explore it.$"
+
+Route31_Text_BugCatcherWade1_Seen:
+	.string "I caught a bunch of Pokémon.\n"
+	.string "Let me battle with you!$"
+
+Route31_Text_BugCatcherWade1_Beaten:
+	.string "Awwwww…$"
+
+Route31_Text_BugCatcherWade1_After:
+	.string "You can catch Pokémon even if\n"
+	.string "you have six with you.\p"
+	.string "If you catch one, it'll go to\n"
+	.string "your Box automatically.$"
+
+Route31_Text_SleepyMan:
+	.string "… Hnuurg… Huh?\p"
+	.string "I walked too far today looking\n"
+	.string "for Pokémon.\p"
+	.string "My feet hurt and I'm sleepy…\p"
+	.string "If I were a wild Pokémon, I'd\n"
+	.string "be easy to catch…\p"
+	.string "…Zzzz…$"
+
+Route31_Text_SleepyManGotMail:
+	.string "…Zzzz… Huh?\p"
+	.string "What's that? You have Mail\n"
+	.string "for me?$"
+
+Route31_Text_SleepyManFail:
+	.string "…Zzzz…$"
+
+Route31_Text_HandOverMailMon:
+	.string "{PLAYER} handed over the\n"
+	.string "Pokémon holding the Mail.$"
+
+Route31_Text_ReadingMail:
+	.string "Let's see…\p"
+	.string "Thanks for bringing this to\n"
+	.string "me.\p"
+	.string "My friend's a good guy, and\n"
+	.string "you're swell too!\p"
+	.string "I'd like to do something good\n"
+	.string "in return too!\p"
+	.string "I know! I want you to have\n"
+	.string "this!$"
+
+Route31_Text_DescribeNightmare:
+	.string "That TM contains Torment.\p"
+	.string "It's a wicked move that\n"
+	.string "makes the enemy super nervous and\l"
+	.string "stops them from using the same\p"
+	.string "move multiple times in a row.$"
+
+Route31_Text_WrongMail:
+	.string "This Mail isn't for me.$"
+
+Route31_Text_MissingMail:
+	.string "Why is this Pokémon so special?\p"
+	.string "It doesn't have any Mail.$"
+
+Route31_Text_DeclinedToHandOverMail:
+	.string "What? You don't want\n"
+	.string "anything?$"
+
+Route31_Text_CantTakeLastMon:
+	.string "If I take that Pokémon from\n"
+	.string "you,\p"
+	.string "what are you going to use in\n"
+	.string "battle?$"
+
+Route31_Text_Youngster:
+	.string "I found a good Pokémon in Dark\n"
+	.string "Cave.\p"
+	.string "I'm going to raise it to take\n"
+	.string "on Falkner.\p"
+	.string "He's the leader of Violet\n"
+	.string "City's Gym.$"
+
+Route31_Text_Sign:
+	.string "Route 31\p"
+	.string "Violet City - Cherrygrove City$"
+
+Route31_Text_DarkCaveSign:
+	.string "Dark Cave$"
+`
+
+script Route31_Expert {
+    lock
+    faceplayer
+    if (flag(FLAG_ROUTE31_EXPERT)) {
+        setflag(FLAG_ROUTE31_EXPERT_QUALIFIED)
+        msgbox("Air Balloon lets a Pokémon avoid 
+				Ground-type moves until it 
+				takes a hit.
+				
+				It might prove useful in the 
+				coming battles.
+				
+				Held items similar to this can
+				be activated once per battle.
+
+				They will be restored after the
+				battle is over.")
+        release
+        end
+    }
+    msgbox("I'm what they call a route expert. 
+	
+			If you manage to beat every trainer on 
+			Route 30 and 31, come find me again 
+			and we will have a battle.
+			
+			I'll make it worth your while,
+			if you manage to win.")
+    if (flag(FLAG_ROUTE31_EXPERT_QUALIFIED) || (defeated(TRAINER_WADE) && defeated(TRAINER_JOEY) && defeated(TRAINER_MIKEY) && defeated(TRAINER_DON))) {
+        setflag(FLAG_ROUTE31_EXPERT_QUALIFIED)
+        msgbox("Oh, you have indeed defeated 
+				all the trainers on this route.
+				
+				I will battle you as promised.")
+        trainerbattle_no_intro(TRAINER_ROUTE_31_EXPERT, "Popped off...")
+		createfieldmugshot(MUGSHOT_COOLTRAINER_M)
+        msgbox("You are better than I had assumed. 
+				
+				Take this for your victory.")
+        giveitem(ITEM_AIR_BALLOON)
+        setflag(FLAG_ROUTE31_EXPERT)
+        addvar(VAR_ROUTE_EXPERTS_DEFEATED, 1)
+        special(Achievement_CheckAll)
+		createfieldmugshot(MUGSHOT_COOLTRAINER_M)
+        msgbox("Air Balloon lets a Pokémon avoid 
+				Ground-type moves until it 
+				takes a hit.
+				
+				It might prove useful in the 
+				coming battles.
+				
+				Held items similar to this can
+				be activated once per battle.
+				
+				They will be restored after the
+				battle is over.")
+    }
+    release
+    end
+}

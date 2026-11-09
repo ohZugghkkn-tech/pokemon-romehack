@@ -1,0 +1,82 @@
+{
+  "id": "MAP_VAJRA_DESERT_WEST_2",
+  "name": "VajraDesertWest_2",
+  "layout": "LAYOUT_VAJRA_DESERT_WEST_2",
+  "music": "MUS_DP_ROUTE216_DAY",
+  "region_map_section": "MAPSEC_VAJRA_DESERT_WEST",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_VAJRA_DESERT",
+      "offset": -65,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_VAJRA_PYRAMID_OUTSIDE",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_RINTO_VILLAGE",
+      "offset": -23,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
+      "x": 21,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VajraCrossroad_Girl",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 20,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_BATTLE_FRONTIER_BATTLE_PYRAMID_LOBBY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 19,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_BATTLE_FRONTIER_BATTLE_PYRAMID_LOBBY",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VajraCrossroad_SignBP"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 20,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "VajraCrossroad_Sign"
+    }
+  ]
+}

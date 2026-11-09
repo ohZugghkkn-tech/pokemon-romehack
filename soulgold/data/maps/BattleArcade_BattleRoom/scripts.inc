@@ -1,0 +1,346 @@
+BattleArcade_BattleRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleArcade_BattleRoom_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleArcade_BattleRoom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	.byte 0
+
+BattleArcade_BattleRoom_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+	map_script_2 VAR_TEMP_1, 0, BattleArcade_BattleRoom_EventScript_PlayerFaceNorth
+	.2byte 0
+
+BattleArcade_BattleRoom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_TEMP_0, 0, BattleArcade_BattleRoom_EventScript_EnterRoom
+	map_script_2 VAR_TEMP_0, 1, BattleArcade_Challenge_EventScript_BeginChallenge
+	.2byte 0
+
+
+BattleArcade_BattleRoom_EventScript_PlayerFaceNorth::
+	setvar VAR_TEMP_1, 1
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+
+BattleArcade_BattleRoom_EventScript_EnterRoom::
+	setvar VAR_TEMP_0, 1
+	special SpawnCameraObject
+	applymovement 1, BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_0
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_1
+	applymovement OBJ_EVENT_ID_CAMERA, BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_2
+	waitmovement 1
+	waitmovement OBJ_EVENT_ID_CAMERA
+	waitmovement OBJ_EVENT_ID_PLAYER
+	call BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield
+	special RemoveCameraObject
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MCFaceCrowd::
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MCFaceCrowd_Movement_0
+	waitmovement 3
+	return
+
+
+BattleArcade_BattleRoom_EventScript_SpawnOpponentEntrance::
+	call BattleArcade_BattleRoom_EventScript_AddSetOpponent
+	frontier_isbrain
+	compare VAR_RESULT, TRUE
+	goto_if_eq BattleArcade_BattleRoom_EventScript_SpawnOpponentEntrance_1
+	call BattleArcade_BattleRoom_EventScript_OpponentIntro
+	return
+
+BattleArcade_BattleRoom_EventScript_SpawnOpponentEntrance_1:
+	call BattleArcade_BattleRoom_EventScript_BrainEntranceMovement
+	return
+
+
+BattleArcade_BattleRoom_EventScript_AddSetOpponent::
+	addobject 2
+	return
+
+
+BattleArcade_BattleRoom_EventScript_OpponentIntro::
+	applymovement 2, BattleArcade_BattleRoom_EventScript_OpponentIntro_Movement_0
+	waitmovement 2
+	return
+
+
+BattleArcade_BattleRoom_EventScript_OpponentBattleMovement::
+	applymovement 2, Common_Movement_WalkInPlaceLeft
+	waitmovement 2
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MCMoveIntoPosition::
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MCMoveIntoPosition_Movement_0
+	waitmovement 3
+	return
+
+
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact::
+	switch VAR_0x8008
+	case ARCADE_IMPACT_PLAYER, BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_3
+	case ARCADE_IMPACT_OPPONENT, BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_4
+	case ARCADE_IMPACT_ALL, BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_5
+	case ARCADE_IMPACT_SPECIAL, BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_6
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_1:
+	waitmovement 3
+	delay 16
+	return
+
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_3:
+	applymovement 3, Common_Movement_FacePlayer
+	goto BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_1
+
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_4:
+	applymovement 3, Common_Movement_FaceAwayPlayer
+	goto BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_1
+
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_5:
+	return
+
+BattleArcade_BattleRoom_EventScript_ApplyOverworldImpact_6:
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MoveMCBack::
+	compare VAR_0x8007, ARCADE_EVENT_GIVE_BERRY
+	goto_if_ne BattleArcade_BattleRoom_EventScript_MoveMCBack_3
+BattleArcade_BattleRoom_EventScript_MoveMCBack_1:
+	waitmovement 3
+	return
+
+BattleArcade_BattleRoom_EventScript_MoveMCBack_2:
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MoveMCBack_Movement_0
+	goto BattleArcade_BattleRoom_EventScript_MoveMCBack_1
+
+BattleArcade_BattleRoom_EventScript_MoveMCBack_3:
+	compare VAR_0x8007, ARCADE_EVENT_GIVE_ITEM
+	goto_if_ne BattleArcade_BattleRoom_EventScript_MoveMCBack_2
+	goto BattleArcade_BattleRoom_EventScript_MoveMCBack_1
+
+
+BattleArcade_BattleRoom_EventScript_MoveMCToTrainer::
+	compare VAR_0x8008, ARCADE_IMPACT_PLAYER
+	goto_if_eq BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_2
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_Movement_1
+BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_1:
+	waitmovement 3
+	return
+
+BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_2:
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_Movement_0
+	goto BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_1
+
+
+BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer::
+	compare VAR_0x8008, ARCADE_IMPACT_PLAYER
+	goto_if_eq BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_1
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_1
+	return
+
+BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_1:
+	applymovement 3, BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_0
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersIntoPosition::
+	lock
+	special SpawnCameraObject
+	applymovement 2, BattleArcade_BattleRoom_EventScript_MoveBattlersIntoPosition_Movement_0
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_BattleRoom_EventScript_MoveBattlersIntoPosition_Movement_1
+	waitmovement 2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	special RemoveCameraObject
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersBack::
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_BattleRoom_EventScript_MoveBattlersBack_Movement_0
+	applymovement 2, BattleArcade_BattleRoom_EventScript_MoveBattlersBack_Movement_1
+	waitmovement OBJ_EVENT_ID_PLAYER
+	waitmovement 2
+	removeobject 2
+	special RemoveCameraObject
+	return
+
+
+BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement::
+	addobject 1
+	setobjectxy 1, 2, 12
+	approachobject 1, OBJ_EVENT_ID_PLAYER, DIR_NORTH, DIR_SOUTH, 2
+	waitmovement 1
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement_Movement_0
+	waitmovement OBJ_EVENT_ID_PLAYER
+	return
+
+
+BattleArcade_BattleRoom_EventScript_AttendantLeave::
+	call BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield
+	applymovement 1, BattleArcade_BattleRoom_EventScript_AttendantLeave_Movement_0
+	waitmovement 1
+	removeobject 1
+	return
+
+
+BattleArcade_BattleRoom_EventScript_BrainEntranceMovement::
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	applymovement OBJ_EVENT_ID_CAMERA, BattleArcade_BattleRoom_EventScript_BrainEntranceMovement_Movement_0
+	waitmovement OBJ_EVENT_ID_PLAYER
+	waitmovement OBJ_EVENT_ID_CAMERA
+	call BattleArcade_BattleRoom_EventScript_BrainEntrance
+	return
+
+
+BattleArcade_BattleRoom_EventScript_BrainEntrance::
+	playse SE_APPLAUSE
+	applymovement OBJ_EVENT_ID_CAMERA, BattleArcade_BattleRoom_EventScript_BrainEntrance_Movement_0
+	applymovement 2, BattleArcade_BattleRoom_EventScript_OpponentIntro_Movement_0
+	waitmovement 2
+	waitmovement OBJ_EVENT_ID_CAMERA
+	waitse
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	special RemoveCameraObject
+	return
+
+
+BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield::
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield_Movement_0
+	waitmovement OBJ_EVENT_ID_PLAYER
+	return
+
+
+BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_0:
+	delay_8
+	delay_8
+	face_up
+	step_end
+
+BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_1:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	step_end
+
+BattleArcade_BattleRoom_EventScript_EnterRoom_Movement_2:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MCFaceCrowd_Movement_0:
+	face_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_OpponentIntro_Movement_0:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_in_place_faster_left
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MCMoveIntoPosition_Movement_0:
+	walk_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveMCBack_Movement_0:
+	walk_up
+	walk_in_place_fast_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_Movement_0:
+	walk_down
+	walk_left
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveMCToTrainer_Movement_1:
+	walk_down
+	walk_right
+	walk_right
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_0:
+	walk_right
+	walk_up
+	walk_up
+	walk_in_place_fast_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveMCFromTrainer_Movement_1:
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_in_place_fast_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersIntoPosition_Movement_0:
+	walk_left
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersIntoPosition_Movement_1:
+	walk_right
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersBack_Movement_0:
+	walk_left
+	walk_in_place_right
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MoveBattlersBack_Movement_1:
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_HandleHealAttendantMovement_Movement_0:
+	walk_in_place_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_AttendantLeave_Movement_0:
+	walk_faster_right
+	walk_faster_right
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
+	walk_faster_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_BrainEntranceMovement_Movement_0:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+BattleArcade_BattleRoom_EventScript_BrainEntrance_Movement_0:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+BattleArcade_BattleRoom_EventScript_MovePlayerBattlefield_Movement_0:
+	walk_in_place_faster_right
+	step_end

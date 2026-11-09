@@ -1,0 +1,234 @@
+
+NationalPark_Normal_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, NationalPark_Normal_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, SetTimeEncounters
+	.byte 0
+
+NationalPark_Normal_OnTransition: 
+	callnative SetTimeBasedEncounters
+	end
+
+NationalPark_Normal_EventScript_Lass::
+	lock
+	faceplayer
+	msgbox NationalPark_Normal_Text_Lass, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+NationalPark_Normal_EventScript_Youngster1::
+	lock
+	faceplayer
+	msgbox NationalPark_Normal_Text_Youngster1, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+NationalPark_Normal_EventScript_Youngster2::
+	lock
+	faceplayer
+	msgbox NationalPark_Normal_Text_Youngster2, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+NationalPark_Normal_EventScript_Teacher2::
+	lock
+	faceplayer
+	msgbox NationalPark_Normal_Text_Teacher2, MSGBOX_DEFAULT
+	closemessage
+	call Common_EventScript_OutOfCenterPartyHeal
+	release
+	end
+
+NationalPark_Normal_EventScript_TeacherQuickclaw::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_QUICK_CLAW, NationalPark_Normal_EventScript_TeacherQuickclaw2
+	msgbox NationalPark_Normal_Text_Teacher1, MSGBOX_DEFAULT
+	giveitem ITEM_QUICK_CLAW
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	setflag FLAG_GOT_QUICK_CLAW
+NationalPark_Normal_EventScript_TeacherQuickclaw2::
+	msgbox NationalPark_Normal_Text_Teacher1_QuickClaw, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+NationalPark_Normal_EventScript_Persian::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PERSIAN, CRY_MODE_NORMAL
+	msgbox NationalPark_Normal_Text_Persian, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+
+
+NationalPark_Normal_Text_Lass:
+	.string "Look! Check out my bag!\p"
+	.string "I printed out my favorites from my\n"
+	.string "Pokédex and stuck them on my bag.$"
+
+NationalPark_Normal_Text_PokefanF:
+	.string "This is Mail I got from my daughter.\n"
+	.string "It cheers me up.$"
+
+NationalPark_Normal_Text_Teacher1:
+	.string "Pay attention, please!\p"
+	.string "…Oops, I have to quit thinking like\n"
+	.string "a teacher all the time.\p"
+	.string "You must be a Pokémon trainer.\p"
+	.string "Since you're working so hard, I\n"
+	.string "want you to have this.$"
+
+NationalPark_Normal_Text_Teacher1_QuickClaw:
+	.string "Let a Pokémon hold that Quick Claw.\p"
+	.string "Sometimes it will strike first\n"
+	.string "during battle.$"
+
+NationalPark_Normal_Text_Youngster1:
+	.string "I'm playing with stickers I printed\n"
+	.string "from my Pokédex.$"
+
+NationalPark_Normal_Text_Youngster2:
+	.string "I get the other guy's Pokédex sticker\n"
+	.string "if I win.$"
+
+NationalPark_Normal_Text_Teacher2:
+	.string "I take walks in the Park, but I\n"
+	.string "never go into the grass.\p"
+	.string "Trainers always want to battle…\p"
+	.string "You must have been in many battles.\n"
+	.string "Let me heal your Pokémon for you.$"
+
+NationalPark_Normal_Text_Persian:
+	.string "Persian: Fufushaa!$"
+
+NationalPark_Normal_EventScript_Jack::
+	trainerbattle_single TRAINER_JACK NationalPark_Normal_Text_SchoolboyJack1_Seen, NationalPark_Normal_Text_SchoolboyJack1_Beaten
+	msgbox NationalPark_Normal_Text_SchoolboyJack_After, MSGBOX_AUTOCLOSE
+	end
+
+NationalPark_Normal_EventScript_Beverly::
+	trainerbattle_single TRAINER_BEVERLY NationalPark_Normal_Text_PokefanFBeverly1_Seen, NationalPark_Normal_Text_PokefanFBeverly1_Beaten
+	msgbox NationalPark_Normal_Text_PokefanFBeverly_After, MSGBOX_AUTOCLOSE
+	end
+
+NationalPark_Normal_EventScript_William::
+	trainerbattle_single TRAINER_WILLIAM NationalPark_Normal_Text_PokefanmWilliam_Seen, NationalPark_Normal_Text_PokefanmWilliam_Beaten
+	msgbox NationalPark_Normal_Text_PokefanmWilliam_After, MSGBOX_AUTOCLOSE
+	end
+
+NationalPark_Normal_EventScript_Krise::
+	trainerbattle_single TRAINER_KRISE NationalPark_Normal_Text_LassKrise_Seen, NationalPark_Normal_Text_LassKrise_Beaten
+	msgbox NationalPark_Normal_Text_LassKrise_After, MSGBOX_AUTOCLOSE
+	end
+
+NationalPark_Normal_Text_SchoolboyJack1_Seen:
+	.string "The world of Pokémon is deep.\p"
+	.string "There are still lots of things we\n"
+	.string "don't know.\p"
+	.string "But I know more than you do!$"
+
+NationalPark_Normal_Text_SchoolboyJack1_Beaten:
+	.string "Wha-wha-what?$"
+
+NationalPark_Normal_Text_SchoolboyJack_After:
+	.string "There is a lot to learn.\p"
+	.string "For example…\p"
+	.string "There are 100 kinds of TMs.\p"
+	.string "Traded Pokémon level up faster.$"
+
+NationalPark_Normal_Text_PokefanFBeverly1_Seen:
+	.string "My Pokémon are simply darling.\p"
+	.string "Let me tell you how proud my\n"
+	.string "darlings make me.$"
+
+NationalPark_Normal_Text_PokefanFBeverly1_Beaten:
+	.string "I can beat you in pride, but…$"
+
+NationalPark_Normal_Text_PokefanFBeverly_After:
+	.string "I must say, your Pokémon are quite\n"
+	.string "cute, too.$"
+
+NationalPark_Normal_Text_PokefanmWilliam_Seen:
+	.string "We adore our Pokémon, even if they\n"
+	.string "dislike us.\p"
+	.string "That's what being a Fan is about.$"
+
+NationalPark_Normal_Text_PokefanmWilliam_Beaten:
+	.string "M-my Pokémon!$"
+
+NationalPark_Normal_Text_PokefanmWilliam_After:
+	.string "I lost the battle, but my Pokémon win\n"
+	.string "the prize for being most lovely.$"
+
+NationalPark_Normal_Text_LassKrise_Seen:
+	.string "Hello? Why are you staring at me?\p"
+	.string "Oh, a battle?$"
+
+NationalPark_Normal_Text_LassKrise_Beaten:
+	.string "…Hmmm…$"
+
+NationalPark_Normal_Text_LassKrise_After:
+	.string "I thought you were staring at me\n"
+	.string "because I'm cute!$"
+
+NationalPark_Normal_Text_Sign_RelaxationSquare:
+	.string "Relaxation Square\n"
+	.string "National Park$"
+
+NationalPark_Normal_Text_Sign_BattleNotice:
+	.string "What is this notice?\p"
+	.string "Please battle only in the grass.\p"
+	.string "National Park Warden's Office$"
+
+NationalPark_Normal_Text_TrainerTips:
+	.string "Trainer Tips\p"
+	.string "Print out Mail by opening it then\n"
+	.string "pressing Start.$"
+
+NationalPark_BugsyRematch::
+	lock
+	faceplayer
+	msgbox NationalPark_BugsyRematch_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, TRUE
+	goto_if_eq NationalPark_BugsyRematch_2
+NationalPark_BugsyRematch_1:
+	release
+	end
+
+NationalPark_BugsyRematch_2:
+	trainerbattle_no_intro TRAINER_BUGSY_2, NationalPark_BugsyRematch_Text_1
+	msgbox NationalPark_BugsyRematch_Text_2
+	closemessage
+	fadescreenswapbuffers FADE_TO_BLACK
+	setflag FLAG_HIDE_NATIONAL_BUGSY
+	removeobject LOCALID_NATIONAL_BUGSY
+	delay 30
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto NationalPark_BugsyRematch_1
+
+
+NationalPark_BugsyRematch_Text_0:
+	.string "Heyo, {PLAYER}!\p"
+	.string "I'm checking on the Bug Pokémon here in\n"
+	.string "Ilex, making sure any ruffians are not\l"
+	.string "causing trouble to them.\p"
+	.string "I've gotten quite a bit stronger since\n"
+	.string "we last fought, how about I show it to\l"
+	.string "you?$"
+
+NationalPark_BugsyRematch_Text_1:
+	.string "Way to go! You're crazy strong!$"
+
+NationalPark_BugsyRematch_Text_2:
+	.string "Looks like my team still got ways to go\n"
+	.string "if I want to beat you.\p"
+	.string "Maybe we should have another tussle\n"
+	.string "like this once everyone has gotten\l"
+	.string "together. \p"
+	.string "Until then, laters!$"

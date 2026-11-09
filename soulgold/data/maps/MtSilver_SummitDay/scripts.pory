@@ -1,0 +1,128 @@
+raw `
+MtSilver_SummitDay_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtSilver_SummitDay_OnTransition
+	.byte 0
+
+MtSilver_SummitDay_OnFrame::
+	map_script_2 VAR_TEMP_0, 0 MtSilver_SummitDay_Blizzard
+	.2byte 0
+
+MtSilver_SummitDay_Blizzard::
+	playse SE_M_BLIZZARD
+	setvar VAR_TEMP_0, 1
+	end
+
+MtSilver_SummitDay_OnTransition:
+    call Common_EventScript_SetupRivalGfxId
+	call_if_set FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetNight
+	call_if_unset FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetDay
+	end
+
+
+MtSilver_SummitDay_OnTransition_SetLayout:
+	call_if_set FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetNight
+	call_if_unset FLAG_DAY_POKEMON, MtSilver_SummitDay_EventScript_SetDay
+	end
+
+MtSilver_SummitDay_EventScript_SetNight::
+	setmaplayoutindex LAYOUT_MT_SILVER_SUMMIT_NIGHT
+	return
+
+MtSilver_SummitDay_EventScript_SetDay::
+	setmaplayoutindex LAYOUT_MT_SILVER_SUMMIT_DAY
+	return
+`
+
+script MtSilver_SummitDay_EventScript_Rival {
+	lock
+	createfieldmugshotrival
+	msgbox("I knew you'd come here.")
+	delay(30)
+	faceplayer
+	msgbox("I've been up here thinking.
+			Not much else to do.
+			
+			I kept telling myself,
+			one more badge. One more win.
+
+			Then I would finally catch up.
+			
+			Silly isn't it? In the end I was
+			just trying to stand out.
+
+			Assuming everyone had some sort of
+			expectation of me to reach these 
+			heights and become the best.")
+	closemessage
+	applymovement(LOCALID_MTSILVER_RIVAL, moves(walk_in_place_up))
+	waitmovement(0)
+	delay(30)
+	faceplayer
+	createfieldmugshotrival
+	msgbox("In the end it was just all in my head
+			when you get down to it, haha.
+
+			So! I want you, {PLAYER} to give me
+			one last battle to knock some sense
+			into me!
+			
+			Not asking as a bitter rival, 
+			but as your best friend!
+			
+			I got nothing to prove, but let's
+			have fun like we used to.")
+	removefieldmugshot
+	closemessage
+	checkplayergender
+	if (var(VAR_RESULT) == MALE) {
+		trainerbattle_no_intro(TRAINER_RIVAL_CRYSTAL_FINAL, "Hah, nice one.")
+	} else {
+		trainerbattle_no_intro(TRAINER_RIVAL_GOLD_FINAL, "Hah, nice one.")
+	}
+	setrespawn(HEAL_LOCATION_NEW_BARK_TOWN)
+	createfieldmugshotrival
+	delay(30)
+	msgbox("Okay.
+			That's what I needed.")
+	msgbox("You always do the battling
+			with a smile, I felt that too
+			in this battle.")
+
+	msgbox("When I was just standing here alone, I
+			was wishing you could arrive.
+			
+			then, I saw this egg in the ground
+			here. 
+			
+			I think it appeared in reaction to my
+			wish, but you should have it instead.
+
+			After all, you made my wish come true!
+
+			So, thanks {PLAYER}.")
+	playfanfare(MUS_OBTAIN_ITEM)
+	removefieldmugshot
+	msgbox("{PLAYER} received an Egg!")
+	waitfanfare
+	giveegg(SPECIES_JIRACHI)
+	createfieldmugshotrival
+	msgbox("Now c'mon, let's race back home!
+			
+			My fingers are freezing from just 
+			standing around here.")
+	removefieldmugshot
+	closemessage
+	fadescreenspeed(FADE_TO_BLACK, 24)
+	setflag(FLAG_HIDE_MTSILVER_RIVAL)
+	removeobject(LOCALID_MTSILVER_RIVAL)
+	setflag(FLAG_DEFEATED_MTSILVER_RIVAL)
+	setvar(VAR_RIVAL_STATE, 12)
+	clearflag(FLAG_HIDE_NEWBARK_RIVAL)
+	clearflag(FLAG_HIDE_RIVAL_AZUMARILL)
+	setflag(FLAG_HIDE_RIVAL_MARILL)
+	delay(40)
+	warp(MAP_NEW_BARK_TOWN_HOUSE3, 33, 3)
+	waitstate
+	releaseall
+	end
+}

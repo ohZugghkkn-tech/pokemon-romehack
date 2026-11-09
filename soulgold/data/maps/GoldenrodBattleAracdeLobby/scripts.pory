@@ -1,0 +1,147 @@
+const CHALLENGE_STATUS_UNKNOWN = 0
+const CHALLENGE_STATUS_END = 255
+
+mapscripts GoldenrodBattleAracdeLobby_MapScripts {
+    	MAP_SCRIPT_ON_FRAME_TABLE
+	[
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_UNKNOWN: BattleArcade_Registration_EventScript_GetChallengeStatus
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING: BattleArcade_Registration_EventScript_QuitWithoutSaving
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED: BattleArcade_Registration_EventScript_ResumeChallenge
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON: BattleArcade_Registration_EventScript_WonChallenge
+		VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST: BattleArcade_Registration_EventScript_LostChallenge
+	]
+
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	[
+		VAR_TEMP_1, 0 :BattleArcade_Lobby_EventScript_PlayerFaceNorth
+	]
+}
+
+
+
+
+
+script GoldenrodArcadeLobby_Rocker {
+	lock
+	msgbox("These machines have to be rigged!
+			There's no way I just lost it all!")
+	release
+	end
+}
+
+script GoldenrodArcadeLobby_Oldman {
+	lock
+	msgbox("Hah! Another win! I'll get to buy my
+			daughter something nice this weekend!")
+
+	release
+	end
+}
+
+script GoldenrodArcadeLobby_Battlegirl {
+	lock
+	msgbox("RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH!
+			JUST ONE MORE WIN AND I'LL STOP!")
+	release
+	end
+}
+
+script GoldenrodArcadeLobby_Shop {
+	lock
+	msgbox("Welcome.")
+	waitmessage
+	pokemart(GoldenrodArcade_Shop)
+	msgbox("Pleasure doing business.")
+	release
+	end
+}
+
+mart GoldenrodArcade_Shop {
+	ITEM_MASTER_BALL
+	ITEM_SHIN_GENOME
+	ITEM_SCROLL_OF_WATERS
+	ITEM_SCROLL_OF_DARKNESS
+	ITEM_HP_UP_EX
+	ITEM_PROTEIN_EX
+	ITEM_IRON_EX
+	ITEM_CALCIUM_EX
+	ITEM_ZINC_EX
+	ITEM_CARBOS_EX
+	ITEM_PP_MAX
+}
+
+script GoldenrodArcade_Queue2 {
+	msgbox("I can't wait to see the next battle
+			from the front-row seats!", MSGBOX_NPC)
+}
+
+script GoldenrodArcade_Queue3 {
+	msgbox("Hey! No shoving! I was here first!", MSGBOX_NPC)
+}
+
+script GoldenrodArcade_Queue4 {
+	msgbox("Is this the Goldenrod Casino? I think
+			I'm a little lost...", MSGBOX_NPC)
+}
+
+script ArcadeLobby_GameMachine {
+	msgbox("Bright flashes and vivid pictures are
+			flashing across the screen. Better not
+			try...", MSGBOX_NPC)
+}
+
+script MagernaKeyBurglar {
+	lock
+	faceplayer
+	if (flag(FLAG_GOT_MAGERNA_KEY)) {
+		msgbox("You can use the key to access the top 
+				floor of Goldenrod apartment building.")
+		msgbox("As for me, I'm rich beyond belief 
+				now! Good bye ice soup, hello gravlax!")
+		release
+		end
+	}
+	if (!flag(FLAG_GOT_MAGERNA_KEY_INTRODONE)) {
+		msgbox("Hey there champ, may I interest
+			you in some special wares that
+			may or may not have been legally
+			acquired?
+			
+			For example, this key to the top
+			floor apartment residence in the
+			Goldenrod apartment building!
+			
+			Who knows what kind of riches are
+			available for the taking up there?
+			
+			I just need you to do me a tiny
+			favour and it could be yours for
+			the taking.")
+		setflag(FLAG_GOT_MAGERNA_KEY_INTRODONE)
+	}
+	msgbox("I need you to win at least 25 battles
+			in the Rocket Arcade battles, my
+			bets are riding on you winning
+			me a fortune!")
+
+	specialvar(VAR_RESULT, GetRocketArcadeWins)
+	if (var(VAR_RESULT) >= 25) {
+		msgbox("You... You did it!
+		
+				I can't thank you enough. Here, it's
+				yours as promised.")
+		playfanfare(MUS_HG_OBTAIN_KEY_ITEM)
+		msgbox("{PLAYER} obtained Apartment Key!")
+		waitfanfare
+		msgbox("You can use it to access the top floor
+				of Goldenrod apartment building.")
+		msgbox("As for me, it's time to say goodbye
+				to ice soup!")
+		setflag(FLAG_GOT_MAGERNA_KEY)
+		release
+		end
+	}
+	release
+	end
+	
+}

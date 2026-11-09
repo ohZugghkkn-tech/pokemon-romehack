@@ -1,0 +1,31 @@
+.set LOCALID_NURSE, 1
+
+PewterCity_PokemonCenter_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_PokemonCenter_OnTransition
+	.byte 0
+
+PewterCity_PokemonCenter_OnTransition::
+	setrespawn HEAL_LOCATION_PEWTER_CITY
+	end
+
+PewterCity_PokemonCenter_EventScript_Teacher::
+	msgbox PewterCity_PokemonCenter1F_Text_Teacher, MSGBOX_NPC
+	end
+
+PewterCity_PokemonCenter_EventScript_BugCatcher::
+	msgbox PewterCity_PokemonCenter1F_Text_BugCatcher, MSGBOX_NPC
+	end
+
+PewterCity_PokemonCenter1F_Text_Teacher:
+	.string "…Yeah, and the Gym in Cinnabar's gone.\p"
+	.string "I was really amazed.\p"
+	.string "…Yes? I'm on the phone. Go away!$"
+
+PewterCity_PokemonCenter1F_Text_Jigglypuff:
+	.string "Jigglypuff: Puu pupuu.$"
+
+PewterCity_PokemonCenter1F_Text_BugCatcher:
+	.string "Most Pokémon get drowsy if they hear a\n"
+	.string "Jigglypuff singing.\p"
+	.string "There are several moves that can be\n"
+	.string "used only while a Pokémon is asleep.$"

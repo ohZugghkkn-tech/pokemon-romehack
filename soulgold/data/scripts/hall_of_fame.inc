@@ -1,0 +1,43 @@
+EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
+	special SetChampionSaveWarp
+	setflag FLAG_GARBAGEFLAG
+	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
+	call_if_eq FLAG_GARBAGEFLAG, 0, EverGrandeCity_HallOfFame_EventScript_SetDesertUnderpassCommentReady
+	clearflag FLAG_GARBAGEFLAG
+	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
+	setvar FLAG_GARBAGEFLAG, 2
+	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GARBAGEFLAG
+	clearflag FLAG_GARBAGEFLAG
+	setflag FLAG_GARBAGEFLAG
+	special UpdateTrainerFanClubGameClear
+	call_if_unset FLAG_GARBAGEFLAG, EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent
+	call_if_unset FLAG_GARBAGEFLAG, EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum
+	setflag FLAG_GARBAGEFLAG
+	setflag FLAG_GARBAGEFLAG
+	call_if_eq FLAG_GARBAGEFLAG, 0, EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent
+	return
+
+EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries::
+	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_GARBAGEFLAG
+	clearflag FLAG_GARBAGEFLAG
+	return
+
+EverGrandeCity_HallOfFame_EventScript_SetDesertUnderpassCommentReady::
+	setvar FLAG_GARBAGEFLAG, 1
+	return
+
+EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum::
+	return
+
+EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent::
+	setvar FLAG_GARBAGEFLAG, 3
+	setvar FLAG_GARBAGEFLAG, 3
+	return
+
+EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent::
+	setvar FLAG_GARBAGEFLAG, 1
+	return

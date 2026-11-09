@@ -1,0 +1,29 @@
+mapscripts SnowtopMountainOutside_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_SNOWTOP_MOUNTAIN)
+        end
+    }
+}
+
+script SnowtopMountainOutside_Snover {
+    lock
+    faceplayer
+    playmoncry(SPECIES_SNOVER, CRY_MODE_NORMAL)
+    msgbox("Snover: Snoo!")
+    waitmoncry
+    release
+    end
+}
+
+script SnowtopMountainOutside_Articuno {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_ARTICUNO, 50, LOCALID_ARTICUNO, FLAG_HIDE_ARTICUNO)
+    release
+    end
+}
+
+script SnowtopMountainOutside_Sign {
+    msgbox("Snowtop Mountain
+            Chilling temperatures ahead!", MSGBOX_SIGN)
+}

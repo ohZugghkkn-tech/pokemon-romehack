@@ -1,0 +1,375 @@
+.set LOCALID_LIGHTHOUSE_JASMINE, 12
+.set LOCALID_LIGHTHOUSE_AMPHAROS, 13
+
+OlivineCity_Lighthouse_MapScripts::
+	.byte 0
+
+OlivineLighthouse_EventScript_1FSailor::
+	lock
+	faceplayer
+	msgbox OlivineLighthouse_Text_1FSailor, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineLighthouse_EventScript_1FPokefanF::
+	lock
+	faceplayer
+	msgbox OlivineLighthouse_Text_1FPokefanF, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineLighthouse_Text_1FSailor:
+	.string "People train at this Lighthouse.\p"
+	.string "It's not easy to climb with all\n"
+	.string "the trainers waiting inside.$"
+
+OlivineLighthouse_Text_1FPokefanF:
+	.string "In the past, Pokémon used to light\n"
+	.string "the sea around Olivine at night.\p"
+	.string "The Lighthouse was built in honor\n"
+	.string "of those noble Pokémon.$"
+
+@2nd floor==============================================================================================================================
+
+OlivineLighthouse_EventScript_Huey::
+	trainerbattle_single TRAINER_HUEY, OlivineLighthouse_Text_SailorHueySeen, OlivineLighthouse_Text_SailorHueyBeaten
+	msgbox OlivineLighthouse_Text_SailorHueyAfter, MSGBOX_AUTOCLOSE
+	end
+
+OlivineLighthouse_EventScript_GentlemanAlfred::
+    trainerbattle_single TRAINER_ALFRED, OlivineLighthouse_Text_GentlemanAlfredSeen, OlivineLighthouse_Text_GentlemanAlfredBeaten
+    msgbox OlivineLighthouse_Text_GentlemanAlfredAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_Text_SailorHueySeen:
+	.string "Men of the sea are always\n"
+	.string "spoiling for a good fight!$"
+
+OlivineLighthouse_Text_SailorHueyBeaten:
+	.string "Urf!\n"
+	.string "I lose!$"
+
+OlivineLighthouse_Text_SailorHueyAfter:
+	.string "What power! How would you like\n"
+	.string "to sail the seas with me?$"
+
+OlivineLighthouse_Text_GentlemanAlfredSeen:
+	.string "Hm? This is no place\n"
+	.string "for playing.$"
+
+OlivineLighthouse_Text_GentlemanAlfredBeaten:
+	.string "Ah! I can see that you're\n"
+	.string "serious.$"
+
+OlivineLighthouse_Text_GentlemanAlfredAfter:
+	.string "Up top is a Pokémon that keeps\n"
+	.string "the Lighthouse lit.\p"
+	.string "But I hear that it's sick now,\n"
+	.string "and can't be cured normally.$"
+
+@3rd floor==============================================================================================================================
+
+OlivineLighthouse_EventScript_BirdKeeperTheo::
+    trainerbattle_single TRAINER_THEO, OlivineLighthouse_Text_BirdKeeperTheoSeen, OlivineLighthouse_Text_BirdKeeperTheoBeaten
+    msgbox OlivineLighthouse_Text_BirdKeeperTheoAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_EventScript_SailorTerrell::
+    trainerbattle_single TRAINER_TERRELL, OlivineLighthouse_Text_SailorTerrellSeen, OlivineLighthouse_Text_SailorTerrellBeaten
+    msgbox OlivineLighthouse_Text_SailorTerrellAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_EventScript_GentlemanPreston::
+    trainerbattle_single TRAINER_PRESTON, OlivineLighthouse_Text_GentlemanPrestonSeen, OlivineLighthouse_Text_GentlemanPrestonBeaten
+    msgbox OlivineLighthouse_Text_GentlemanPrestonAfter, MSGBOX_AUTOCLOSE
+    end
+
+
+OlivineLighthouse_Text_BirdKeeperTheoSeen:
+	.string "Why are you here? Are you just\n"
+	.string "going to gawk? I suggest you leave!$"
+
+OlivineLighthouse_Text_BirdKeeperTheoBeaten:
+	.string "You really are concerned about\n"
+	.string "the sick Pokémon…$"
+
+OlivineLighthouse_Text_BirdKeeperTheoAfter:
+	.string "How the heck do you go up?\p"
+	.string "I want to visit the sick Pokémon,\n"
+	.string "but I can't get up there…$"
+
+OlivineLighthouse_Text_SailorTerrellSeen:
+	.string "Sailors are both kind and strong.\n"
+	.string "How about you?$"
+
+OlivineLighthouse_Text_SailorTerrellBeaten:
+	.string "You are both kind and strong…$"
+
+OlivineLighthouse_Text_SailorTerrellAfter:
+	.string "Every time I return to Olivine,\n"
+	.string "I visit the Gym.\p"
+	.string "The Gym Leader’s Pokémon type\n"
+	.string "changed without me noticing.$"
+
+OlivineLighthouse_Text_GentlemanPrestonSeen:
+	.string "I travel the world to train my\n"
+	.string "Pokémon. I wish to battle you.$"
+
+OlivineLighthouse_Text_GentlemanPrestonBeaten:
+	.string "…sigh… I must train some more…$"
+
+OlivineLighthouse_Text_GentlemanPrestonAfter:
+	.string "Jasmine used to use rock-type\n"
+	.string "Pokémon like Onix.$"
+
+@4th floor==============================================================================================================================
+
+OlivineLighthouse_EventScript_SailorKent::
+    trainerbattle_single TRAINER_KENT, OlivineLighthouse_Text_SailorKentSeen, OlivineLighthouse_Text_SailorKentBeaten
+    msgbox OlivineLighthouse_Text_SailorKentAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_EventScript_LassConnie::
+    trainerbattle_single TRAINER_CONNIE, OlivineLighthouse_Text_LassConnieSeen, OlivineLighthouse_Text_LassConnieBeaten
+    msgbox OlivineLighthouse_Text_LassConnieAfter, MSGBOX_AUTOCLOSE
+    end
+
+
+OlivineLighthouse_Text_SailorKentSeen:
+	.string "Jasmine must be worried sick about\n"
+	.string "the Pokémon here.\p"
+	.string "She won't even smile these days.$"
+
+OlivineLighthouse_Text_SailorKentBeaten:
+	.string "I can't manage a smile either…$"
+
+OlivineLighthouse_Text_SailorKentAfter:
+	.string "Speaking of sick, I've heard there's\n"
+	.string "a good Pharmacy in Cianwood.$"
+
+OlivineLighthouse_Text_LassConnieSeen:
+	.string "Jasmine is this city's Gym Leader.\p"
+	.string "I mean to bring her back with me.\p"
+	.string "Nobody had better get in my way!$"
+
+OlivineLighthouse_Text_LassConnieBeaten:
+	.string "Aaack! My Pokémon!$"
+
+OlivineLighthouse_Text_LassConnieAfter:
+	.string "Right. Anybody would be worried if\n"
+	.string "his or her own Pokémon were hurt.\p"
+	.string "I'll pray for the Pokémon here, so\n"
+	.string "Jasmine can come back to the Gym.$"
+
+@5th floor==============================================================================================================================
+
+OlivineLighthouse_EventScript_SailorErnest::
+    trainerbattle_single TRAINER_ERNEST, OlivineLighthouse_Text_SailorErnestSeen, OlivineLighthouse_Text_SailorErnestBeaten
+    msgbox OlivineLighthouse_Text_SailorErnestAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_EventScript_BirdKeeperDenis::
+    trainerbattle_single TRAINER_DENIS, OlivineLighthouse_Text_BirdKeeperDenisSeen, OlivineLighthouse_Text_BirdKeeperDenisBeaten
+    msgbox OlivineLighthouse_Text_BirdKeeperDenisAfter, MSGBOX_AUTOCLOSE
+    end
+
+OlivineLighthouse_Text_SailorErnestSeen:
+	.string "I wanted to battle Jasmine, but she's\n"
+	.string "not up to it now.\p"
+	.string "So, how about you?$"
+
+OlivineLighthouse_Text_SailorErnestBeaten:
+	.string "Whoa, whoa. You're overwhelming!$"
+
+OlivineLighthouse_Text_SailorErnestAfter:
+	.string "A Gym Leader isn't just about being\n"
+	.string "strong.\p"
+	.string "A Leader also needs to be\n"
+	.string "compassionate.$"
+
+OlivineLighthouse_Text_BirdKeeperDenisSeen:
+	.string "We're pretty high up here. My bird\n"
+	.string "Pokémon are in prime form.$"
+
+OlivineLighthouse_Text_BirdKeeperDenisBeaten:
+	.string "Oops… They crashed…$"
+
+OlivineLighthouse_Text_BirdKeeperDenisAfter:
+	.string "My Pokémon learned how to use Fly in\n"
+	.string "Cianwood.\p"
+	.string "Well, since I'm a loser, I'll Fly\n"
+	.string "across the sea…$"
+
+@6th floor==============================================================================================================================
+
+OlivineLighthouse_EventScript_Jasmine::
+	lock
+	faceplayer
+	goto_if_eq VAR_OLIVINE_CITY_STATE, 3, OlivineLighthouse_EventScript_JasmineGoGetPotion
+	goto_if_eq VAR_OLIVINE_CITY_STATE, 4, OlivineLighthouse_EventScript_JasmineDeliverPotion
+	msgbox OlivineLighthouse_Text_JasmineCianwoodPharmacy, MSGBOX_DEFAULT
+	msgbox OlivineLighthouse_Text_JasmineGetMedicine, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_OLIVINE_CITY_STATE, 3
+	release
+	end
+OlivineLighthouse_EventScript_JasmineGoGetPotion::
+	msgbox OlivineLighthouse_Text_JasmineGetMedicine2, MSGBOX_DEFAULT
+	release
+	end
+
+
+OlivineLighthouse_EventScript_Ampharos::
+	lock
+	faceplayer
+	goto_if_lt VAR_OLIVINE_CITY_STATE, 5, OlivineLighthouse_EventScript_AmpharosSick
+	fadescreen FADE_TO_WHITE
+	playse SE_M_THUNDERBOLT2
+	waitse
+	fadescreen FADE_FROM_WHITE
+	playmoncry SPECIES_AMPHAROS, CRY_MODE_NORMAL
+	msgbox OlivineLighthouse_Text_AmphyPaluPalulu, MSGBOX_DEFAULT
+	waitmoncry
+	setflag FLAG_AMPHAROS_HEALED
+	release
+	end
+
+OlivineLighthouse_EventScript_AmpharosSick::
+	playmoncry SPECIES_AMPHAROS, CRY_MODE_NORMAL
+	msgbox OlivineLighthouse_Text_AmphyPalPaloo, MSGBOX_DEFAULT
+	waitmoncry
+	msgbox OlivineLighthouse_Text_AmphyBreathingLabored, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineLighthouse_Text_JasmineCianwoodPharmacy:
+	.string "Jasmine: …This Pokémon always kept\n"
+	.string "the sea lit at night.\p"
+	.string "…But it suddenly got sick… It's\n"
+	.string "gasping for air…\p"
+	.string "…I understand that there is a\n"
+	.string "wonderful Pharmacy in Cianwood…\p"
+	.string "But that's across the sea…\n"
+	.string "And I can't leave Amphy unattended…$"
+
+OlivineLighthouse_Text_JasmineGetMedicine:
+	.string "…May I ask you to get some medicine\n"
+	.string "for me? Please?$"
+
+OlivineLighthouse_Text_JasmineGetMedicine2:
+	.string "There is a wonderful Pharmacy\n"
+	.string "in Cianwood…\p"
+	.string "But that's across the sea…\n"
+	.string "And I can't leave Amphy unattended…\p"
+	.string "…May I ask you to get some medicine\n"
+	.string "for me? Please?$"
+
+OlivineLighthouse_Text_JasmineCureAmphy:
+	.string "Jasmine: …Will that medicine cure\n"
+	.string "Amphy?$"
+
+
+OlivineLighthouse_EventScript_JasmineDeliverPotion::
+	msgbox OlivineLighthouse_Text_JasmineCureAmphy, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, FALSE, OlivineLighthouse_EventScript_JasmineRefuse
+	playse SE_USE_ITEM
+	removeitem ITEM_SECRET_POTION
+	msgbox OlivineLighthouse_Text_PlayerHandedSecretpotion, MSGBOX_DEFAULT
+	waitse
+	msgbox OlivineLighthouse_Text_JasmineDontBeOffended, MSGBOX_DEFAULT
+	closemessage
+	turnobject LOCALID_LIGHTHOUSE_JASMINE, DIR_NORTH
+	delay 20
+	turnobject LOCALID_LIGHTHOUSE_AMPHAROS, DIR_SOUTH
+	playse MUS_HEAL
+	waitse
+	msgbox OlivineLighthouse_Text_JasmineAmphyHowFeeling, MSGBOX_DEFAULT
+	fadescreen FADE_TO_WHITE
+	playse SE_M_THUNDERBOLT2
+	waitse
+	fadescreen FADE_FROM_WHITE
+	playmoncry SPECIES_AMPHAROS, CRY_MODE_NORMAL
+	msgbox OlivineLighthouse_Text_AmphyPaluPalulu, MSGBOX_DEFAULT
+	waitmoncry
+	closemessage
+	applymovement LOCALID_LIGHTHOUSE_AMPHAROS, OlivineLighthouse_Movement_Amphy
+	waitmovement 0
+	applymovement LOCALID_LIGHTHOUSE_JASMINE, OlivineLighthouse_Movement_Jasmine
+	msgbox OlivineLighthouse_Text_JasmineThankYou, MSGBOX_DEFAULT
+	closemessage
+
+	fadescreen FADE_TO_BLACK
+	playse SE_EXIT
+	setflag FLAG_HIDE_LIGHTHOUSE_JASMINE
+	removeobject LOCALID_LIGHTHOUSE_JASMINE
+	waitse
+	delay 50
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_SAFARI_ZONE_GATE_STATE, 1
+	setvar VAR_OLIVINE_CITY_STATE, 5
+	setflag FLAG_AMPHAROS_HEALED
+	clearflag FLAG_HIDE_OLIVINE_CITY_GYM_JASMINE
+	release
+	end
+
+OlivineLighthouse_Movement_Jasmine:
+	face_player
+	step_end
+
+OlivineLighthouse_Movement_Amphy:
+	walk_up
+	jump_in_place_down
+	jump_in_place_left
+	jump_in_place_right
+	jump_in_place_up
+	face_down
+	step_end
+
+
+OlivineLighthouse_EventScript_JasmineRefuse::
+	msgbox OlivineLighthouse_Text_JasmineISee, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineLighthouse_Text_PlayerHandedSecretpotion:
+	.string "{PLAYER} handed the Secretpotion to\n"
+	.string "Jasmine.$"
+
+OlivineLighthouse_Text_JasmineDontBeOffended:
+	.string "Jasmine: …Um, please don't be\n"
+	.string "offended…\p"
+	.string "…Amphy will not take anything from\n"
+	.string "anyone but me…$"
+
+OlivineLighthouse_Text_JasmineAmphyHowFeeling:
+	.string "Jasmine: …\p"
+	.string "Amphy, how are you feeling?$"
+
+OlivineLighthouse_Text_JasmineThankYou:
+	.string "Jasmine: …Oh, I'm so relieved…\p"
+	.string "This is just so wonderful…\p"
+	.string "Thank you so very, very much.\p"
+	.string "…I will return to the Gym…\p"
+	.string "I'll also warn you, steel types\n"
+	.string "are powerful.$"
+
+OlivineLighthouse_Text_JasmineISee:
+	.string "Jasmine: …I see…\n"
+	.string "…Amphy, hang on!$"
+
+OlivineLighthouse_Text_AmphyPalPaloo:
+	.string "Amphy: …\n"
+	.string "…Pa… paloo…$"
+
+OlivineLighthouse_Text_AmphyBreathingLabored:
+	.string "Its breathing is terribly\n"
+	.string "labored…$"
+
+OlivineLighthouse_Text_AmphyPaluPalulu:
+	.string "Amphy: Palu! Palulu!$"
+
+

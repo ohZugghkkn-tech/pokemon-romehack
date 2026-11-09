@@ -1,0 +1,51 @@
+BattleArcade_Lobby_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleArcade_Lobby_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleArcade_Lobby_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	.byte 0
+
+BattleArcade_Lobby_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_TEMP_CHALLENGE_STATUS, 0, BattleArcade_Registration_EventScript_GetChallengeStatus
+	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_SAVING, BattleArcade_Registration_EventScript_QuitWithoutSaving
+	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_PAUSED, BattleArcade_Registration_EventScript_ResumeChallenge
+	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_WON, BattleArcade_Registration_EventScript_WonChallenge
+	map_script_2 VAR_TEMP_CHALLENGE_STATUS, CHALLENGE_STATUS_LOST, BattleArcade_Registration_EventScript_LostChallenge
+	.2byte 0
+
+BattleArcade_Lobby_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+	map_script_2 VAR_TEMP_1, 0, BattleArcade_Lobby_EventScript_PlayerFaceNorth
+	.2byte 0
+
+
+BattleArcade_Lobby_EventScript_PlayerFaceNorth::
+	setvar VAR_TEMP_1, 1
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	end
+
+
+BattleArcade_Lobby_EventScript_WarpToHallway::
+	warpsilent MAP_GOLDENROD_BATTLE_ARCADE_HALLWAY, 1, 3
+	return
+
+
+BattleArcade_Lobby_EventScript_WalkToElevator::
+	closemessage
+	applymovement 1, BattleArcade_Lobby_EventScript_WalkToElevator_Movement_0
+	applymovement OBJ_EVENT_ID_PLAYER, BattleArcade_Lobby_EventScript_WalkToElevator_Movement_1
+	waitmovement 1
+	waitmovement OBJ_EVENT_ID_PLAYER
+	return
+
+
+BattleArcade_Lobby_EventScript_WalkToElevator_Movement_0:
+	walk_up
+	walk_up
+	walk_up
+	set_invisible
+	step_end
+
+BattleArcade_Lobby_EventScript_WalkToElevator_Movement_1:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end

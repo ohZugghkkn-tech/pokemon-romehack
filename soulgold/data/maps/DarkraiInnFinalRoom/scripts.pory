@@ -1,0 +1,39 @@
+mapscripts DarkraiInnFinalRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_HIDE_FOLLOWER)
+    }
+}
+
+script DarkraiEncounter {
+    lock
+    faceplayer
+
+    bosslegendaryencounterwithmoves(
+        SPECIES_DARKRAI,
+        70,
+        LOCALID_DARKRAI,
+        FLAG_HIDE_DARKRAI,
+        4,
+        SPECIES_DARKRAI_MEGA,
+        110,
+        MOVE_DARK_PULSE,
+        MOVE_ICE_BEAM,
+        MOVE_DARK_VOID,
+        MOVE_DREAM_EATER)
+
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 5)
+        }
+    }
+
+    release
+    end
+}
+
+script WarpPlayerOutDarkraiRoom {
+    warpwhitefade(MAP_CHERRYGROVE_CITY, 29, 21)
+    waitstate
+    end
+}
+

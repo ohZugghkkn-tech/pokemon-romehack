@@ -1,0 +1,117 @@
+CeladonCity_Apartments_2F_MapScripts::
+	.byte 0
+
+CeladonCity_Apartments_2F_EventScript_Computer::
+	lock
+	playse SE_PC_ON
+	msgbox CeladonMansion2F_Text_Computer
+	playse SE_PC_OFF
+	waitse
+	release
+	end
+
+CeladonCity_Apartments_2F_EventScript_Sign::
+	msgbox CeladonMansion2F_Text_DevOfficeSign, MSGBOX_SIGN
+	end
+
+CeladonMansion2F_Text_Computer:
+	.string "{PLAYER} turned on the PC.\p"
+	.string "…\p"
+	.string "Someone was in the middle of\n"
+	.string "composing an e-mail.\p"
+	.string "…I hope you'll come visit Kanto.\p"
+	.string "I think you'll be surprised at\n"
+	.string "how much things have changed here.\p"
+	.string "You'll also see many Pokémon that\n"
+	.string "aren't native to Johto.\p"
+	.string "To the Producer\p"
+	.string "…$"
+
+CeladonMansion2F_Text_DevOfficeSign:
+	.string "Heart & Soul Development Office$"
+
+CeladonMansion2F_EventScript_LilDill::
+	msgbox CeladonMansion2F_Text_LilDill, MSGBOX_NPC
+	end
+
+CeladonMansion2F_EventScript_InfiniteBacon::
+	msgbox CeladonMansion2F_Text_InfiniteBacon, MSGBOX_NPC
+	end
+
+CeladonMansion2F_EventScript_TixoRebel::
+	msgbox CeladonMansion2F_Text_TixoRebel, MSGBOX_NPC
+	end
+
+CeladonMansion2F_EventScript_Phant::
+	msgbox CeladonMansion2F_Text_Phant, MSGBOX_NPC
+	end
+
+CeladonMansion2F_EventScript_Exclsior::
+	msgbox CeladonMansion2F_Text_Exclsior, MSGBOX_NPC
+	end
+
+CeladonMansion2F_EventScript_DaniRainbow::
+    msgbox CeladonMansion2F_Text_DaniRaibow, MSGBOX_NPC
+    end
+
+CeladonMansion2F_EventScript_IAmAwesome2::
+    msgbox CeladonMansion2F_Text_IAmAwesome2, MSGBOX_NPC
+    end
+
+CeladonMansion2F_Text_LilDill:
+	.string "Hi all, Patch 15--\p"
+	.string "Sorry, I mean...\p"
+	.string "Hi there, I'm the Game Director!\p"
+	.string "I built the maps, the tilesets, the\n"
+	.string "the scripts, and much more.\p"
+	.string "But I couldn't have done it without\n"
+	.string "the other devs and the playtesters.\p"
+	.string "Thank you for playing! I hope you've\n"
+	.string "enjoyed Pokémon Heart & Soul.$"
+
+CeladonMansion2F_Text_InfiniteBacon:
+	.string "We're working to rebuild this game\n"
+	.string "in pokeemerald expansion!\p"
+	.string "Huh?\p"
+	.string "Someone's already done that!$"
+
+CeladonMansion2F_Text_TixoRebel:
+	.string "Have you heard of The Eggening?\n"
+	.string "It was a bug from the playtest\l"
+	.string "that randomly changed Pokémon into\l"
+	.string "Eggs!\p"
+	.string "I developed the fix for it!$"
+
+CeladonMansion2F_Text_Phant:
+	.string "I love Demakes!\p"
+	.string "Have you played Sword And Shield\n"
+	.string "Ultimate Plus - English?\l"
+	.string "I translated it!\p"
+	.string "For my next Demake, I think I'll\n"
+	.string "do Alola!$"
+
+CeladonMansion2F_Text_Exclsior:
+	.string "I implemented the unique surfing\n"
+	.string "surfing sprites for each Pokémon!\p"
+	.string "Since the project is Open Source,\n"
+	.string "you can add your own features too!$"
+
+CeladonMansion2F_Text_DaniRaibow:
+	.string "Hi!\p"
+	.string "I am pretty good at finding problems,\n"
+	.string "and can fix little ones.\p"
+    .string "Wanna hear a joke?\p"
+    .string "Lance tried to teach Dragonite the\n"
+    .string "move Dragon Breath.\p"
+    .string "However, Dragonite was moving too\n"
+    .string "fast from Extremespeed; it couldn't\l"
+    .string "catch it!$"
+
+CeladonMansion2F_Text_IAmAwesome2:
+	.string "I was the one who remade this\n"
+	.string "in pokeemerald-expansion!\p"
+	.string "Now you can catch all Pokémon\n"
+	.string "from Generations 1-9!\p"
+	.string "I appreciate the hard work the\n"
+	.string "rest of the directors of Pokémon\l"
+	.string "Heart & Soul put into this game!$"
