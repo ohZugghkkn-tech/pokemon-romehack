@@ -63,6 +63,13 @@ def check_maps(game, known):
     for entry in maps:
         if entry.get("layout") not in allowed_layouts:
             raise ValueError(f"Unknown layout in {entry['id']}: {entry.get('layout')}")
+    excluded_groups = set(groups.get("rom_excluded_groups", []))
+    if excluded_groups - set(order):
+        raise ValueError("Unknown ROM-excluded map group")
+    excluded_names = {name for group in excluded_groups for name in groups[group]}
+    excluded_ids = {entry["layout"] for name, entry in zip(names, maps) if name in excluded_names}
+    retained_ids = {entry["layout"] for name, entry in zip(names, maps) if name not in excluded_names}
+    excluded_ids -= retained_ids  # Shared layouts must remain available.
     observed = {}
     for entry in layouts:
         for field in ("border_filepath", "blockdata_filepath"):
@@ -72,8 +79,12 @@ def check_maps(game, known):
             raise ValueError(f"Invalid dimensions in {entry['id']}")
         path = local_file(game, entry["blockdata_filepath"])
         actual, expected = path.stat().st_size, width * height * 2
+        excluded = entry["id"] in excluded_ids or entry.get("layout_version", "emerald") != "emerald"
+        if not excluded and (actual < expected or actual % 2):
+            raise ValueError(f"Short or non-u16 ROM layout: {entry['id']}")
         if actual != expected:
             observed[entry["id"]] = {
+                "classification": "excluded-from-emerald" if excluded else "emitted-surplus-cells",
                 "path": entry["blockdata_filepath"], "width": width, "height": height,
                 "actual_bytes": actual, "expected_bytes": expected,
                 "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -109,7 +120,8 @@ def main():
     maps, layouts, debt = check_maps(ROOT / "soulgold", known)
     print(f"Syntax: {counts['json']} JSON, {counts['python']} Python OK. "
           f"References: {maps} maps, {layouts} layouts checked.")
-    print(f"OPEN DEBT: {debt} known layout-size mismatches, unchanged; NOT a release approval.")
+    print(f"Reviewed legacy differences: {debt}, unchanged; no short emitted Emerald layout. "
+          "This is a data-bound check, not a playthrough or release approval.")
 
 
 if __name__ == "__main__":

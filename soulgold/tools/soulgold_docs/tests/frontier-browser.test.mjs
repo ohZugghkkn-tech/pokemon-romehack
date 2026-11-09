@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import { chromium } from "playwright";
 
 const base = process.env.DOCS_TEST_URL || "http://127.0.0.1:8000/";
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.CHROMIUM_EXECUTABLE_PATH
+    ? { executablePath: process.env.CHROMIUM_EXECUTABLE_PATH }
+    : {}),
+});
 try {
   for (const width of [1280, 390, 320]) {
     const page = await browser.newPage({ viewport: { width, height: 900 }, isMobile: width < 500, hasTouch: width < 500 });
@@ -18,7 +23,10 @@ try {
     assert.match(await page.locator(".frontier-set").first().innerText(), /252 Spe/);
     assert.match(await page.locator(".frontier-set").first().innerText(), /IVs\s+0 SpA/);
     assert.match(await page.locator(".frontier-set").first().innerText(), /Jolly/);
-    assert.match(await page.locator(".frontier-set").first().innerText(), /Speed\s+Lv 50 225 · Lv 100 442 with Choice Scarf/);
+    assert.equal(
+      (await page.locator(".frontier-set .frontier-speed dd").first().innerText()).replace(/\s+/g, " "),
+      "Lvl 50 225 / Lvl 100 442 with Choice Scarf",
+    );
     assert.equal(await page.locator(".frontier-item").first().innerText(), "Choice Scarf");
 
     await page.locator(".frontier-set .ability-pill").first().click();

@@ -57,3 +57,7 @@ python3 -m unittest discover -s shaders/tests -v
 Die Tests prüfen Manifest-Hashes, lokale Preset- und Include-Abhängigkeiten, Pass-Reihenfolge, ScaleFX-Einstellungen sowie Parameternamen und Wertebereiche. Sie ersetzen weder die Shaderkompilierung im Host noch einen visuellen Test.
 
 **Status:** statische Prüfungen ausgeführt; kein RetroArch-/GPU-Test, keine visuelle Abnahme. SoulGold-Code und Starterauswahl sind unverändert.
+
+### Tatsächliche Offline-Kompilierung
+
+Zusätzlich: `npm ci --prefix scripts/shader-tools --ignore-scripts` und `npm test --prefix scripts/shader-tools` vom Repository-Root. Am 9. November 2026 erfolgreich: acht Preset-Shader / 16 Stufen nach SPIR-V. Das ersetzt weiterhin keinen GPU-/RetroArch-Bildtest. Siehe `TESTING.md`.

@@ -18,8 +18,8 @@ Die Python-Umgebung ist für Entwicklungstests; `requirements-dev.txt` ist keine
 
 `check.py` bricht bei Fehlern ab und prüft:
 
-1. Syntax aller versionierten und nicht ignorierten neuen JSON-/Python-Dateien, doppelte JSON-Schlüssel, registrierte Karten-/Layoutreferenzen, IDs und Blockdatenlängen. Unveränderte bekannte Abweichungen werden ausdrücklich als offene Schuld gemeldet; neue/geänderte Abweichungen schlagen fehl.
-2. Eigene Regressionstests der Prüflogik mit positiven und negativen Fällen.
+1. Syntax aller versionierten und nicht ignorierten neuen JSON-/Python-Dateien, doppelte JSON-Schlüssel, registrierte Karten-/Layoutreferenzen, IDs und Blockdatenlängen. Die 26 historischen Unterschiede sind klassifiziert (7 ausgeschlossen, 19 mit überzähligen Zellen); neue/geänderte Abweichungen sowie kurze oder ungerade ausgegebene Puffer schlagen fehl.
+2. Eigene Regressionstests der Prüflogik und des echten C++-Mapgenerators, einschließlich stabiler Layout-IDs.
 3. Shader-Hashes, Include-/Preset-Abhängigkeiten, ScaleFX-Passfolge und Parameter.
 4. SoulGold-Dokumentationsparser, Websitegenerator, Lernsethelfer und QR-Generator.
 5. Die reinen Node-Tests für Party-Export und Versionsvergleich.
@@ -34,7 +34,7 @@ Er besitzt getrennte Jobs:
 - `host-tests`: führt unseren Host-Runner auf Ubuntu 24.04 mit Python 3.11 und Node 22 aus.
 - `target-build-and-tests`: installiert die ARM-/Host-Abhängigkeiten, protokolliert Compilerversionen und führt in `soulgold/` `make -j2 all` sowie `make -j2 check-all` aus. Keine ROMs werden hochgeladen. Die vorhandenen Upstream-Testwerkzeuge werden dabei ausgeführt; ihre Herkunftshinweise bleiben erhalten.
 
-**Der neue Zieljob wurde noch nicht auf GitHub ausgeführt.** Seine Definition ist eine geplante Prüfung, kein Build-Erfolg. Die Distributionstoolchain ist nicht vollständig hermetisch fixiert. Vor Branchschutz/Freigabe den tatsächlichen Lauf prüfen. Dependabot schlägt Action-/Root-Python-Updates per PR vor; es gibt keinen Auto-Merge.
+**Aktueller Stand:** Der Host-Job auf `main` ist erfolgreich; der ARM-Job im Lauf 42616407393 ist gestartet, aber beim Abschluss dieser lokalen Prüfung noch nicht fertig. Kein Build-Erfolg wird daraus abgeleitet. Die Distributionstoolchain ist nicht vollständig hermetisch fixiert. Vor Branchschutz/Freigabe den tatsächlichen Lauf prüfen. Dependabot schlägt Action-/Root-Python-Updates per PR vor; es gibt keinen Auto-Merge.
 
 ## Separater Browser-Test
 
@@ -55,10 +55,23 @@ Danach in einem zweiten Terminal im Verzeichnis `soulgold/`:
 DOCS_TEST_URL=http://127.0.0.1:8000/ node --test tools/soulgold_docs/tests/frontier-browser.test.mjs
 ```
 
-Der Server ist nur für lokale Tests gedacht. In einer entfernten Vorschauumgebung gelten deren Host-/Port-Vorgaben. Dieser Browser-Test wurde bei der aktuellen Prüfung nicht ausgeführt; der initiale unvorbereitete Sammellauf scheiterte schon am fehlenden Playwright-Paket. Er wird im Host-Runner ausdrücklich nicht als bestanden gezählt.
+Der Server ist nur für lokale Tests gedacht. In einer entfernten Vorschauumgebung gelten deren Host-/Port-Vorgaben. Der Browser-Test wurde am 9. November 2026 tatsächlich mit Chromium 153 bei 1280, 390 und 320 Pixeln erfolgreich ausgeführt. Optional kann `CHROMIUM_EXECUTABLE_PATH` auf eine vorhandene Chromium-Datei zeigen. Er bleibt vom Host-Runner getrennt; der neue CI-Job `shader-and-browser-tests` führt ihn zusätzlich aus.
 
 ## ROM- und GPU-Tests bleiben getrennt
 
-Ein bestandener Host-Runner belegt **keine** erfolgreiche ARM-Kompilierung oder Save-Kompatibilität. Für den Spielbuild gelten `soulgold/Makefile`, die Plattformanleitungen und die Hinweise in `ROMHACK-WISSEN.md`. Im Audit fehlten `arm-none-eabi-gcc`, RetroArch und ein Shader-Compiler; deshalb wurden kein ROM-Build, keine C-Zieltests und keine visuelle Shader-Abnahme durchgeführt.
+Ein bestandener Host-Runner belegt **keine** erfolgreiche ARM-Kompilierung oder Save-Kompatibilität. Für den Spielbuild gelten `soulgold/Makefile`, die Plattformanleitungen und die Hinweise in `ROMHACK-WISSEN.md`. Lokal fehlen weiterhin ARM-Toolchain und RetroArch. Die 16 Shader-Stufen wurden inzwischen erfolgreich mit dem fixierten WASM-glslang zu SPIR-V kompiliert, jedoch nicht auf einer GPU ausgeführt. ARM-CI, Save-Kompatibilität und visuelle Abnahme sind separat nachzuweisen.
 
 Nie echte eigene Spielstände ohne Backup testen. Keine ROMs, BIOS-Dateien, privaten Saves oder lokale Umgebungen committen.
+
+## Reproduzierbare Shader-Kompilierung
+
+```bash
+npm ci --prefix scripts/shader-tools --ignore-scripts
+npm test --prefix scripts/shader-tools
+```
+
+Prüft drei Compiler-Helper-Regressionen und kompiliert die tatsächlich im Preset referenzierten acht Shader (16 Stufen). Version und Integrität der WASM-Abhängigkeit stehen im Lockfile. Keine GPU-, Link-/Reflection- oder Bildfreigabe. Dieser Schritt läuft auch im separaten CI-Job.
+
+## Aktuelle Belege und verbleibende Freigaben
+
+Siehe [Abschluss der Folgeprüfung](docs/reviews/2026-11-09-followup.md). Keine privaten Saves oder ROMs einchecken. Ohne geeignete Save-Fixtures ist Save-Kompatibilität nicht als bestanden zu markieren.

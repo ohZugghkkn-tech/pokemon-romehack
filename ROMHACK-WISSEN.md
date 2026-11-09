@@ -4,6 +4,10 @@ Stand: 9. November 2026. Diese Datei ist auf den **lokal eingebundenen SoulGold-
 
 **Aktueller Auftrag:** Repository auf Probleme prüfen und belegte Fehler korrigieren. Zusätzlich zur bisherigen Shaderübernahme wurden Host-Testinfrastruktur und Dokumentationswerkzeuge korrigiert. Ergebnisse stehen in [AUDIT.md](AUDIT.md), ausführbare Prüfungen in [TESTING.md](TESTING.md). Keine Gameplayänderung, kein Engine-Update und keine ROM-Veröffentlichung. Der Startertausch zu Mew ist vorgemerkt, aber noch nicht umgesetzt.
 
+## Aktuelle KI-zu-KI-Roadmap
+
+Die [To-do-Liste mit Phasen, Werkzeugen, Abnahmekriterien und gewichtetem Fortschritt](docs/KI-ZU-KI-TODO.md) beschreibt den Weg vom Import bis zum eigenen fertigen Spielupdate. Aktuelle Planung: **rund 55 %**, ausdrücklich keine Qualitäts- oder Spielbarkeitsmessung.
+
 ## 1. Welches Projekt wir tatsächlich bearbeiten
 
 | Eigenschaft | Feststellung / Beleg |

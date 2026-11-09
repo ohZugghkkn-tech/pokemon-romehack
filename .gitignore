@@ -1,6 +1,7 @@
 # Local environments, credentials and generated host-test output.
 .venv/
 __pycache__/
+node_modules/
 *.pyc
 .env
 .env.*
