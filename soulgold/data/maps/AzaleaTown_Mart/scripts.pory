@@ -1,0 +1,75 @@
+raw `
+AzaleaTown_Mart_MapScripts::
+	.byte 0
+
+AzaleaTown_Mart_EventScriptBugCatcher::
+	lock
+	faceplayer
+	msgbox AzaleaMart_Text_BugCatcher, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+AzaleaMart_Text_BugCatcher:
+	.string "A Great Ball is better for catch-\n"
+	.string "ing Pokémon than a Poké Ball.\p"
+	.string "But Kurt's might be better some-\n"
+	.string "times.$"
+
+`
+
+script AzaleaTownMart2 {
+    lock
+    faceplayer
+    if (flag(FLAG_BADGE04_GET) == FALSE) {
+        msgbox("We're out of Galarica wreaths
+                and cuffs currently.
+
+                We hope to have them restocked soon.
+                Regardless, welcome!")
+        waitmessage
+        pokemart(GalaricaNoneVendor)
+        msgbox("Come back again soon!")
+        release
+        end
+    }
+    message("Welcome! The Galarian items back 
+            in stock!")
+    waitmessage
+    pokemart(GalaricaVendor)
+    msgbox("Come back again soon!")
+    release
+    end
+}
+
+mart GalaricaVendor {
+    ITEM_TM_INFESTATION
+    ITEM_TM_GIGA_DRAIN
+    ITEM_TM_X_SCISSOR
+    ITEM_GALARICA_WREATH
+    ITEM_GALARICA_CUFF
+    ITEM_NEST_BALL
+    ITEM_MECH_MAIL
+}
+
+mart GalaricaNoneVendor {
+    ITEM_TM_GIGA_DRAIN
+    ITEM_NEST_BALL
+    ITEM_MECH_MAIL
+}
+
+script AzaleaTownMartNpc {
+    lock
+    faceplayer
+    if (flag(FLAG_BADGE04_GET)) {
+        msgbox("Galarian evolution items are back in
+                stock!")
+        release
+        end    
+    }
+    msgbox("Apparently the Team Rocket had taken 
+            all evolution items specifically for
+            Galarian Slowpoke.")
+    release
+    end
+}

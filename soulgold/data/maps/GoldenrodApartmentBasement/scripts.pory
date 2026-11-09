@@ -1,0 +1,76 @@
+mapscripts GoldenrodApartmentBasement_MapScripts {}
+
+script RotomMachine_Wash {
+    lock
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_HYDRO_PUMP)
+    special(ChangeRotomForm)
+
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Rotom's form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Fan {
+    lock
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_AIR_SLASH)
+    special(ChangeRotomForm)
+
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Rotom's form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Fridge {
+    lock
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_BLIZZARD)
+    special(ChangeRotomForm)
+
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Rotom's form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Lawnmower {
+    lock
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_LEAF_STORM)
+    special(ChangeRotomForm)
+
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Rotom's form was changed!")
+    }
+    release
+    end
+}
+
+script RotomMachine_Oven {
+    lock
+    special(ChoosePartyMon)
+    waitstate
+    lock
+    setvar(VAR_0x8000, MOVE_OVERHEAT)
+    special(ChangeRotomForm)
+
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Rotom's form was changed!")
+    }
+    release
+    end
+}

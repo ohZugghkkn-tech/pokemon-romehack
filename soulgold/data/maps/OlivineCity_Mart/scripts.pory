@@ -1,0 +1,53 @@
+raw `
+OlivineCity_Mart_MapScripts::
+	.byte 0
+
+OlivineCity_EventScript_Trainer1::
+	lock
+	faceplayer
+	msgbox OlivineCity_Text_MartCooltrainerF, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineCity_EventScript_Lass::
+	lock
+	faceplayer
+	msgbox OlivineCity_Text_MartLass, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineCity_Text_MartCooltrainerF:
+	.string "Do your Pokémon already know\n"
+	.string "the move for carrying people\l"
+	.string "across water?$"
+
+OlivineCity_Text_MartLass:
+	.string "My Butterfree came from my\n"
+	.string "boyfriend overseas.\p"
+	.string "It carried some Mail from him.\p"
+	.string "Want to know what it says?\p"
+	.string "Let's see... Nope! It's a\n"
+	.string "secret!$"
+`
+
+script Olivine_Mart2 {
+    lock
+    faceplayer
+    message("Welcome! How may I help you?")
+    waitmessage
+    pokemart(Olivine2)
+    msgbox("Come back soon!")
+    release
+    end
+}
+
+mart Olivine2 {
+	ITEM_TM_DRAINING_KISS
+	ITEM_TM_BRUTAL_SWING
+	ITEM_TM_CHARGE_BEAM
+    ITEM_DIVE_BALL
+    ITEM_LEVEL_BALL
+    ITEM_NET_BALL
+}

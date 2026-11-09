@@ -1,0 +1,56 @@
+mapscripts FoggyForest_MapScripts {}
+
+script FoggyForest_HexManiac {
+    trainerbattle_single(TRAINER_MINA, "Heeheehee, are you lost?", "The eyes above are watching.")
+    msgbox("Bravery or foolishness, which one are
+            you carrying here?", MSGBOX_AUTOCLOSE)
+}
+
+script FoggyForest_Girl {
+    msgbox("Round and round, all paths lead back
+            here, la la la!", MSGBOX_NPC)
+}
+
+script FoggyForest_Phantump {
+    lock
+    faceplayer
+    playmoncry(SPECIES_PHANTUMP, CRY_MODE_NORMAL)
+    msgbox("Phantump: Phoo!")
+    waitmoncry
+    release
+    end
+}
+
+script FoggyForestBMTeleport {
+    checkitem(ITEM_BLACK_MIRROR)
+    if (var(VAR_RESULT) == TRUE) {
+        warpwhitefade(MAP_FOGGYFOREST_DEPTHS, 8, 24)
+        waitstate
+    }
+    release
+    end
+}
+
+script FoggyForestBMTeleportR {
+    checkitem(ITEM_BLACK_MIRROR)
+    if (var(VAR_RESULT) == TRUE) {
+        warpwhitefade(MAP_FOGGYFOREST_DEPTHS, 9, 24)
+        waitstate
+    }
+    release
+    end
+}
+
+script FoggyForestBMOutTeleport {
+    warpwhitefade(MAP_FOGGY_FOREST, 38, 5)
+    waitstate
+    release
+    end
+}
+
+script FoggyForestBMOutTeleportR {
+    warpwhitefade(MAP_FOGGY_FOREST, 39, 5)
+    waitstate
+    release
+    end
+}

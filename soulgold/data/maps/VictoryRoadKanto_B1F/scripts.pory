@@ -1,0 +1,48 @@
+raw `
+VictoryRoadKanto_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoadKanto_B1F_OnTransition
+	.byte 0
+
+VictoryRoadKanto_B1F_OnTransition::
+	call Common_EventScript_SetupRivalGfxId
+    end
+
+
+
+MtSilver_1F_MoltresRoom_EventScript_MoltresRan::
+	release
+	end
+`
+
+script VictoryRoadKanto_B1F_EventScript_Moltres {
+    lock
+    faceplayer
+    legendaryencounter(SPECIES_MOLTRES, 60, LOCALID_VICTORYROAD_MOLTRES, FLAG_HIDE_MOLTRES)
+    release
+    end
+}
+
+script VictoryRoad_Rival {
+    if (flag(FLAG_SPOKEN_VICTORYROAD_RIVAL)) {
+        goto(VictoryRoad_Rival2)
+    } else {
+        lock
+        faceplayer
+        createfieldmugshotrival
+        msgbox("Don't.")
+        setflag(FLAG_SPOKEN_VICTORYROAD_RIVAL)
+        release
+        end
+    }
+}
+
+script VictoryRoad_Rival2 {
+    lock
+    faceplayer
+    createfieldmugshotrival
+    msgbox("I just need to train more.
+            
+            That's all there ever is to it.")
+    release
+    end
+}

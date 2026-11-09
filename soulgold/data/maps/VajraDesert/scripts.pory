@@ -1,0 +1,84 @@
+mapscripts VajraDesert_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_SUS_DESERT_DOOR)) {
+            setmetatile(37, 6, 0x4AE, FALSE)
+        }
+    }
+}
+
+script VajraDesert_ManSighing {
+    msgbox("Man... The sandpits seem terrible at
+            this moment. The path to the village
+            is blocked. I hope it clears up soon.", MSGBOX_NPC)
+}
+
+script VajraDesert_TrainerJill {
+        trainerbattle_single(TRAINER_JILL, "I read in a magazine that training in
+                                            harsh environments is great for you!",
+                                            "I wanna go home...")
+        msgbox("I should've listened to mom, that
+                magazine was really sketchy...", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerRodaros {
+        trainerbattle_single(TRAINER_RODAROS, "Behold the might of the sandstorm!",
+                                            "Gah! Sand in my mouth!")
+        msgbox("The area can be unstable with the
+                sandpits shifting around by phases
+                of the moon.", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerBelmare {
+        trainerbattle_single(TRAINER_BELMARE, "Let me show you my cutest Pokémon!",
+                                            "Oh dear...")
+        msgbox("My Maractus is absolutely the most
+                adorable Pokémon. We come here to
+                sunbathe!", MSGBOX_AUTOCLOSE)
+}
+script VajraDesert_TrainerKennedy {
+        trainerbattle_single(TRAINER_KENNEDY, "Overcoming harsh ordeals with your
+                                               Pokémon is the spirit of the journey!",
+                                            "Marvelous battling skills!")
+        msgbox("I've lived in the nearby village for the
+                past 40 years, we've never missed a
+                training day.", MSGBOX_AUTOCLOSE)
+}
+raw `
+VajraDesert_BrailleRegirock:
+	.braille "TYRANT OF\n"
+	.braille "THE DESERT\n"
+	.braille "FULLY EVOLVED.$"
+`
+script VajraDesert_SusDoor {
+    lock
+    msgbox("Something is carved on the door...")
+    closemessage
+    braillemsgbox(VajraDesert_BrailleRegirock)
+    checkspecies(SPECIES_TYRANITAR)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_SUS_DESERT_DOOR)
+        setmetatile(37, 6, 0x4AE, FALSE)
+        playse(SE_EXIT)
+        special(DrawWholeMapView)
+    }
+    release
+    end
+}
+
+script VajraDesertWest_GrottoDoor {
+    msgbox("There seems to be a small path in
+            the sand. Enter?", MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        warp(MAP_HIDDEN_GROTTO_UNUSED, 0)
+        waitstate
+    }
+    release
+    end
+}
+
+script VajraDesertWest_WestSign {
+    msgbox("Vajra Desert
+            {RIGHT_ARROW} Rinto Village", MSGBOX_SIGN)
+}
+
+script VajraDesertWest_EastSign {
+    msgbox("{UP_ARROW}{RIGHT_ARROW} Rinto Village", MSGBOX_SIGN)
+}

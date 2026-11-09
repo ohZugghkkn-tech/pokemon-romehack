@@ -1,0 +1,117 @@
+UnionCave_1F_MapScripts::
+	.byte 0
+
+
+UnionCave_1F_Trigger_Monview::
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkRight1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkRight1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkRight1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkRight1
+	waitmovement 0
+	message Route29_Text_PressAorB
+	waitbuttonpress
+	closemessage
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkLeft1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkLeft1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkLeft1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_CAMERA, Common_Movement_WalkLeft1
+	waitmovement 0
+	special RemoveCameraObject
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkLeft1
+	waitmovement 0
+	end
+
+
+UnionCave_1F_EventScript_HikerRussell::
+	trainerbattle_single TRAINER_RUSSELL, UnionCave_1F_Text_HikerRussellSeen, UnionCave_1F_Text_HikerRussellBeaten
+	msgbox UnionCave_1F_Text_HikerRussellAfter, MSGBOX_AUTOCLOSE
+	end
+
+UnionCave_1F_EventScript_PokemaniacLarry::
+	trainerbattle_single TRAINER_LARRY, UnionCave_1F_Text_PokemaniacLarrySeen, UnionCave_1F_Text_PokemaniacLarryBeaten
+	msgbox UnionCave_1F_Text_PokemaniacLarryAfter, MSGBOX_AUTOCLOSE
+	end
+
+UnionCave_1F_EventScript_HikerDaniel::
+	trainerbattle_single TRAINER_DANIEL, UnionCave_1F_Text_HikerDanielSeen, UnionCave_1F_Text_HikerDanielBeaten
+	msgbox UnionCave_1F_Text_HikerDanielAfter, MSGBOX_AUTOCLOSE
+	end
+
+UnionCave_1F_EventScript_FirebreatherBill::
+	trainerbattle_single TRAINER_BILL, UnionCave_1F_Text_FirebreatherBillSeen, UnionCave_1F_Text_FirebreatherBillBeaten
+	msgbox UnionCave_1F_Text_FirebreatherBillAfter, MSGBOX_AUTOCLOSE
+	end
+
+UnionCave_1F_EventScript_FirebreatherRay::
+	trainerbattle_single TRAINER_RAY, UnionCave_1F_Text_FirebreatherRaySeen, UnionCave_1F_Text_FirebreatherRayBeaten
+	msgbox UnionCave_1F_Text_FirebreatherRayAfter, MSGBOX_AUTOCLOSE
+	end	
+
+UnionCave_1F_Text_HikerRussellSeen:
+	.string "You're headed to Azalea, are you?\p"
+	.string "Let my Pokémon see if you are good\n"
+	.string "enough to battle.$"
+
+UnionCave_1F_Text_HikerRussellBeaten:
+	.string "Oh, oh, oh!$"
+
+UnionCave_1F_Text_HikerRussellAfter:
+	.string "All right, then! I've decided.\p"
+	.string "I'm not leaving until my Pokémon\n"
+	.string "get tougher!$"
+
+UnionCave_1F_Text_PokemaniacLarrySeen:
+	.string "I roam far and wide in search of\n"
+	.string "Pokémon.\p"
+	.string "Are you looking for Pokémon too?\p"
+	.string "Then you're my collecting rival!$"
+
+UnionCave_1F_Text_PokemaniacLarryBeaten:
+	.string "Ugh. My poor Pokémon…$"
+
+UnionCave_1F_Text_PokemaniacLarryAfter:
+	.string "Every Friday, you can hear Pokémon\n"
+	.string "roars from deep inside the cave.$"
+
+UnionCave_1F_Text_HikerDanielSeen:
+	.string "Whoa! What a surprise!\p"
+	.string "I didn't expect to see anyone here!$"
+
+UnionCave_1F_Text_HikerDanielBeaten:
+	.string "Whoa! I'm beaten big time!$"
+
+UnionCave_1F_Text_HikerDanielAfter:
+	.string "I was conned into buying a\n"
+	.string "Slowpoketail.\p"
+	.string "I feel sorry for the poor Pokémon.$"
+
+UnionCave_1F_Text_FirebreatherBillSeen:
+	.string "Zubat's Supersonic keeps confusing\n"
+	.string "my Pokémon.\p"
+	.string "I'm seriously upset about that!$"
+
+UnionCave_1F_Text_FirebreatherBillBeaten:
+	.string "I flamed out!$"
+
+UnionCave_1F_Text_FirebreatherBillAfter:
+	.string "On weekends, you can hear strange\n"
+	.string "roars from deep in the cave.$"
+
+UnionCave_1F_Text_FirebreatherRaySeen:
+	.string "If it's light, a cave isn't scary.\p"
+	.string "If you're strong, Pokémon aren't\n"
+	.string "scary.$"
+
+UnionCave_1F_Text_FirebreatherRayBeaten:
+	.string "Flash!$"
+
+UnionCave_1F_Text_FirebreatherRayAfter:
+	.string "It's my Pokémon's fire that lights\n"
+	.string "up this cave.$"

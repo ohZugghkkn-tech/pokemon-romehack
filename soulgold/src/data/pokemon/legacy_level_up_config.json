@@ -1,0 +1,14 @@
+{
+  "automaticSpacing": {
+    "minimumLevel": 40,
+    "minimumSpacing": 3
+  },
+  "excludedMoves": [],
+  "species": {
+    "Buizel": {
+      "levelOverrides": {
+        "MOVE_SONIC_BOOM": 11
+      }
+    }
+  }
+}

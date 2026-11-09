@@ -1,0 +1,35 @@
+#include "global.h"
+#include "test/battle.h"
+
+SINGLE_BATTLE_TEST("Compound Eyes raises accuracy")
+{
+    PASSES_RANDOMLY(91, 100, RNG_ACCURACY);
+    GIVEN {
+        ASSUME(GetMoveAccuracy(MOVE_THUNDER) == 70);
+        PLAYER(SPECIES_BUTTERFREE) { Ability(ABILITY_COMPOUND_EYES); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER, player);
+        HP_BAR(opponent);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Compound Eyes raises accuracy (Traits)")
+{
+    PASSES_RANDOMLY(91, 100, RNG_ACCURACY);
+    GIVEN {
+        ASSUME(GetMoveAccuracy(MOVE_THUNDER) == 70);
+        PLAYER(SPECIES_BUTTERFREE) { Ability(ABILITY_TINTED_LENS); Innates(ABILITY_COMPOUND_EYES); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER, player);
+        HP_BAR(opponent);
+    }
+}
+
+#endif

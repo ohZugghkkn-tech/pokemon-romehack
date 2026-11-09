@@ -1,0 +1,33 @@
+RailwayCave_3F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION
+	.byte 0
+
+RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	goto_if_set FLAG_IS_CHAMPION, RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
+RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_2:
+	setflag FLAG_HIDE_COBALION
+	return
+
+RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+	clearflag FLAG_HIDE_COBALION
+	return
+
+RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
+	goto_if_unset FLAG_CAUGHT_COBALION, RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	goto RailwayCave_3F_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
+
+
+RailwayCave_Cobalion::
+	lock
+	faceplayer
+	bosslegendaryencounter SPECIES_COBALION, 80, LOCALID_COBALION, FLAG_HIDE_COBALION, 2, SPECIES_NONE, 110
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
+	goto_if_eq RailwayCave_Cobalion_2
+RailwayCave_Cobalion_1:
+	release
+	end
+
+RailwayCave_Cobalion_2:
+	setflag FLAG_CAUGHT_COBALION
+	goto RailwayCave_Cobalion_1
+

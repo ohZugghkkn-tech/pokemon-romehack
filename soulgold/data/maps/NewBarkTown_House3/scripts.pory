@@ -1,0 +1,273 @@
+raw `
+NewBarkTown_House3_MapScripts::
+    map_script MAP_SCRIPT_ON_TRANSITION, NewBarkTown_House3_OnTransition
+	.byte 0
+
+NewBarkTown_House3_OnTransition::
+    call Common_EventScript_SetupRivalGfxId
+    end
+`
+
+script NewBarkTown_RivalsMom {
+    lock
+    faceplayer
+    checkplayergender
+    msgbox("Oh, hello {PLAYER}!")
+    if (var(VAR_RESULT) == MALE) {
+        if (var(VAR_RIVAL_STATE) >= 4 && var(VAR_RIVAL_STATE) < 12) {
+            msgbox("Crystal is currently out, if you were
+                    looking for her.")
+                    release
+                    end
+        }
+        msgbox("Crystal is currently upstairs if
+                you are looking for her. She is playing
+                with her Pokémon.")
+    } else {
+        if (var(VAR_RIVAL_STATE) >= 4 && var(VAR_RIVAL_STATE) < 12) {
+            msgbox("Gold is currently out, if you were
+                    looking for him.")
+                    release
+                    end
+        }
+        msgbox("Gold is currently upstairs if
+                you are looking for him. He is playing
+                with his Pokémon.")
+    }
+    release
+    end
+}
+
+script NewBarkTown_RivalsSister {
+    lock
+    faceplayer
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        msgbox("Elm gave my sister a Marill, I hope I
+                can get a Pokémon to play with 
+                soon, too!")
+    } else {
+        msgbox("Elm gave my brother a Marill, I hope I
+                can get a Pokémon to play with 
+                soon, too!")
+    }  
+    release
+    end 
+    
+}
+
+script NewBarkTownRivalHouseRival {
+    lock
+    faceplayer
+    createfieldmugshotrival
+    if (var(VAR_RIVAL_STATE) < 12) {
+        msgbox("Hey {PLAYER}! Have you visited
+            any new places?", MSGBOX_NPC)
+        release
+        end
+    }
+    if (var(VAR_RIVAL_STATE) >= 12) {
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) >= 7 && var(VAR_POSTGAME_RIVAL_LEGENDARYQ) <= 10) {
+            checkitem(ITEM_HM_DIVE)
+            if (var(VAR_RESULT) == FALSE) {
+                msgbox("You'll need this to explore the
+                        underwater areas of Johto!")
+                giveitem(ITEM_HM_DIVE)
+                createfieldmugshotrival
+                checkitem(ITEM_HM_DIVE)
+                if (var(VAR_RESULT) == FALSE) {
+                    release
+                    end
+                }
+            }
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) >= 5 && var(VAR_POSTGAME_RIVAL_LEGENDARYQ) <= 10) {
+            getcaughtmon(SPECIES_DARKRAI)
+            if (var(VAR_RESULT) == FALSE) {
+                msgbox("We still need to investigate Darkrai.
+                        
+                        Take Cresselia to the old inn in
+                        Cherrygrove City!")
+                release
+                end
+            }
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 0) {
+            msgbox("Hey {PLAYER}! What's up?
+            
+                    So I've been doing some thinking, and
+                    decided that I want to help Prof. Elm.
+                    with his research into legendary
+                    Pokémon!
+                    
+                    I've started looking into old rumours
+                    and stories that are circulating in
+                    Johto, and I've found my first lead.
+                    
+                    If you got time and happen to be in the
+                    area, would you mind helping me by
+                    checking them out?
+                    
+                    The first legendary I'm researching
+                    right now concerns not one but two
+                    Pokémon actually!
+                    
+                    Have you heard about Darkrai and
+                    Cresselia?
+                    
+                    One causes nightmares while the other
+                    cures them, fascinating!
+                    
+                    I think we should track down Cresselia
+                    first, in order to locate Darkrai.
+                    
+                    I hear that someone living near or in
+                    the Lake of Rage might know more.")
+                    setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 1)
+                    release
+                    end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 1) {
+            msgbox("I hear that someone living near or in
+                    the Lake of Rage might know more.")
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 2) {
+            msgbox("Oh you found Cresselia's location?
+            
+                    That's great! You should catch it
+                    if you're able to!")
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 3) {
+            msgbox("You caught Cresselia? 
+                    Nice!
+                    
+                    I've been researching Darkrai's
+                    meanwhile.
+                    
+                    I'm quite sure that it has something
+                    to do with the old, run down inn in
+                    Cherrygrove City.
+                    
+                    It was closed due to some child
+                    falling to sleep and not waking up, real
+                    bad press for the inn.
+                    
+                    So in short, take Cresselia with you
+                    and go check out the inn in Cherrygrove
+                    City. See if you can find out anything!")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 4)
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 4) {
+            msgbox("Go check out the old inn in
+                    Cherrygrove City. Remember to
+                    take Cresselia with you!")
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 5) {
+            msgbox("You caught Darkrai! Excellent!
+
+                    You look like you just had a
+                    nightmare though, did something
+                    happen?
+                    
+                    Anyway!")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 6)
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 6) {
+            msgbox("{PLAYER}! I've found another lead
+                    on legendaries!
+                    
+                    Apparently, Hoenn's very own duo
+                    is resting somewhere underwater
+                    here in Johto.
+                    
+                    There aren't many deep waters in
+                    here, so you'll have to look quite
+                    hard for them.
+                    
+                    You're going to need this!")
+            checkitem(ITEM_HM_DIVE)
+            if (var(VAR_RESULT) == FALSE) {
+                giveitem(ITEM_HM_DIVE)
+            }
+            checkitem(ITEM_HM_DIVE)
+            if (var(VAR_RESULT) == FALSE) {
+                release
+                end
+            }
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 7)
+            createfieldmugshotrival
+            msgbox("They are probably quite far away
+                    from each other, so you should
+                    scour the region far and wide.")
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 7 || var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 8) {
+            if (flag(FLAG_ONETIME_GROUDON) && flag(FLAG_ONETIME_KYOGRE)) {  
+                setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 9)
+            }
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 7 || var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 8) {
+            msgbox("Groudon is likely hidden in a cave which
+                    can only be accessed underwater. Maybe
+                    close to a hotter climate?
+                    
+                    Kyogre might prefer easier access to
+                    the open sea. So check on the
+                    coastlines!")
+            release
+            end
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 9) {
+            msgbox("You caught them both?!
+            
+                    Send me your Pokédex data about them
+                    later. Elm is going to be thrilled
+                    about this!
+                    
+                    There isn't anything currently I'm
+                    looking for, and it might take a long
+                    while before I find another target
+                    we could search for.
+
+                    I don't have much to give, but you
+                    can have this!")
+            giveitem(ITEM_OVAL_CHARM)
+            createfieldmugshotrival
+            msgbox("So, thanks {PLAYER}! For being
+                    a genuine friend!")
+            setvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 10)
+            release
+            end 
+        }
+        if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 10) {
+            msgbox("Hey {PLAYER}! How's it going?
+                    Caught any new special Pokémon?")
+        }
+    }
+    release
+    end
+    
+}
+
+script NewBarkTownRivalHouseMarill {
+	lock
+    faceplayer
+    playmoncry(SPECIES_MARILL, CRY_MODE_NORMAL)
+    msgbox("Marii!")
+    waitmoncry
+    release
+    end
+}
+
+script NewBarkTownRivalHouseAzumarill {
+	lock
+    faceplayer
+    playmoncry(SPECIES_AZUMARILL, CRY_MODE_NORMAL)
+    msgbox("Azumarill: Azuu!")
+    waitmoncry
+    release
+    end
+}

@@ -1,0 +1,23 @@
+mapscripts Route33South_UnderwaterCave_MapScripts {}
+
+script Route33Kyogre {
+    lock
+    faceplayer
+    bosslegendaryencounter(SPECIES_KYOGRE, 80, LOCALID_KYOGRE, FLAG_HIDE_KYOGRE, 4, SPECIES_NONE, 110, BOSS_PHASE_PROFILE_KYOGRE)
+    if (var(VAR_RESULT) == B_OUTCOME_CAUGHT) {
+        if (!flag(FLAG_GOT_BLUEORB)) {
+            finditem(ITEM_BLUE_ORB)
+            if (var(VAR_0x8007) == TRUE) {
+                setflag(FLAG_GOT_BLUEORB)
+            }
+        }
+        if (!flag(FLAG_ONETIME_KYOGRE)) {
+            if (var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 7 || var(VAR_POSTGAME_RIVAL_LEGENDARYQ) == 8) {
+                addvar(VAR_POSTGAME_RIVAL_LEGENDARYQ, 1)
+            }
+            setflag(FLAG_ONETIME_KYOGRE)
+        }
+    }
+    release
+    end
+}

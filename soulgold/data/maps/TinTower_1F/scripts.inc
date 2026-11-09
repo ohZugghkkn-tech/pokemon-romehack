@@ -1,0 +1,119 @@
+TinTower_1F_MapScripts::
+	.byte 0
+
+TinTower_1F_EventScript_SageA::
+	lock
+	faceplayer
+	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageA_Hooh
+	msgbox TinTower_1F_Sage4_Text2, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+TinTower_1F_EventScript_SageA_Hooh::
+	msgbox TinTower_1F_Sage4_Text1, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+TinTower_1F_EventScript_SageB::
+	lock
+	faceplayer
+	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageB_Hooh
+	msgbox TinTower_1F_Sage2_Text, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+TinTower_1F_EventScript_SageB_Hooh::
+	msgbox TinTower_1F_Sage1_Text, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+TinTower_1F_EventScript_SageC::
+	lock
+	faceplayer
+	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageC_Hooh
+	msgbox TinTower_1F_Sage6_Text2, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+TinTower_1F_EventScript_SageC_Hooh::
+	msgbox TinTower_1F_Sage3_Text, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+
+TinTower_1F_Sage1_Text:
+	.string "According to legend…\n"
+	.string "When the souls of Pokémon and humans\p"
+	.string "commune, from the heavens descends a\n"
+	.string "Pokémon of rainbow colors…\p"
+	.string "Could it mean the legendary Pokémon\n"
+	.string "are testing us humans?$"
+
+TinTower_1F_Sage2_Text:
+	.string "When the Brass Tower burned down,\n"
+	.string "three nameless Pokémon were said\l"
+	.string "to have perished. It was tragic.\p"
+	.string "However…\p"
+	.string "A rainbow-colored Pokémon…\n"
+	.string "In other words…\p"
+	.string "Ho-Oh descended from the sky and\n"
+	.string "gave new life to the three Pokémon.\p"
+	.string "They are…\n"
+	.string "Suicune, Entei and Raikou.\p"
+	.string "That is what they say.$"
+
+TinTower_1F_Sage3_Text:
+	.string "The two Towers are said to have been\n"
+	.string "built to foster friendship and\p"
+	.string "hope between Pokémon and people.\n"
+	.string "That was 700 years ago, but the ideal\p"
+	.string "still remains important today.$"
+
+TinTower_1F_Sage4_Text1:
+	.string "Ho-Oh appears to have descended\n"
+	.string "upon this, the Tin Tower!$"
+
+TinTower_1F_Sage4_Text2:
+	.string "The legendary Pokémon are said\n"
+	.string "to embody three powers…\p"
+	.string "The lightning that struck the Tower.\n"
+	.string "The fire that burned the Tower.\p"
+	.string "And the rain that put out the fire…$"
+
+TinTower_1F_Sage6_Text2:
+	.string "Of the legendary Pokémon, Suicune\n"
+	.string "is said to be the closest to Ho-Oh.\p"
+	.string "I hear there may also be a link to\n"
+	.string "Pokémon known as Unown.\p"
+	.string "The Pokémon Unown must be sharing a\n"
+	.string "cooperative bond with Suicune.$"
+
+TinTower_1F_EusineHoOh_Text:
+	.string "I knew it.\p"
+	.string "I knew you'd get to see the Pokémon\n"
+	.string "of rainbow colors, <Player>.\p"
+	.string "It happened just as I envisioned.\n"
+	.string "My research isn't bad, I might say.\p"
+	.string "I'm going to keep studying Pokémon\n"
+	.string "to become a famous Pokémaniac!$"
+
+TinTower_1F_EusineSuicune_Text:
+	.string "Eusine: Awesome! Too awesome, even!\n"
+	.string "I've never seen a battle that great.\p"
+	.string "That was truly inspiring to see.\n"
+	.string "Suicune was tough, but you were even\p"
+	.string "more incredible, <Player>.\n"
+	.string "I heard Suicune's mystic power\p"
+	.string "summons a rainbow-colored Pokémon.\n"
+	.string "Maybe, just maybe, what went on today\p"
+	.string "will cause that Pokémon to appear.\n"
+	.string "I'm going to study the legends more.\p"
+	.string "Thanks for showing me that fantastic\n"
+	.string "battle.\p"
+	.string "Later, <Player>!$"

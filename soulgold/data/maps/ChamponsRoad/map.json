@@ -1,0 +1,31 @@
+{
+  "id": "MAP_CHAMPONS_ROAD",
+  "name": "ChamponsRoad",
+  "layout": "LAYOUT_CHAMPONS_ROAD",
+  "music": "MUS_DP_ROUTE225_DAY",
+  "region_map_section": "MAPSEC_CHAMPIONS_ROAD",
+  "requires_flash": false,
+  "weather": "WEATHER_ABNORMAL",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_SNOWTOP_MOUNTAIN_OUTSIDE",
+      "offset": 13,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_MT_GOLD_OUTSIDE",
+      "offset": -29,
+      "direction": "left"
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
+}
