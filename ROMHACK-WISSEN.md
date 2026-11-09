@@ -2,7 +2,7 @@
 
 Stand: 9. November 2026. Diese Datei ist auf den **lokal eingebundenen SoulGold-Quellstand** spezialisiert. Sie ersetzt die bisherige allgemeine ROM-Hacking-Einführung. Ziel ist eine belegte Grundlage, auf der wir anschließend deinen konkreten Änderungsauftrag formulieren können.
 
-**Aktuelle Freigabe:** Dokumentation und lesende Codeanalyse sowie Übernahme fertiger Shader und Erstellung eines minimalen gemeinsamen Presets. Keine Implementierung von Spieländerungen, kein Engine-Update, kein ROM-Build und keine Veröffentlichung einer ROM. Der Startertausch zu Mew ist vorgemerkt, aber noch nicht umgesetzt.
+**Aktueller Auftrag:** Repository auf Probleme prüfen und belegte Fehler korrigieren. Zusätzlich zur bisherigen Shaderübernahme wurden Host-Testinfrastruktur und Dokumentationswerkzeuge korrigiert. Ergebnisse stehen in [AUDIT.md](AUDIT.md), ausführbare Prüfungen in [TESTING.md](TESTING.md). Keine Gameplayänderung, kein Engine-Update und keine ROM-Veröffentlichung. Der Startertausch zu Mew ist vorgemerkt, aber noch nicht umgesetzt.
 
 ## 1. Welches Projekt wir tatsächlich bearbeiten
 
@@ -40,6 +40,7 @@ Bereits erledigt:
 - Herkunft und Quellstand im Projekt-README dokumentiert.
 - Bei der Übernahme wurde der Git-Tree auf identische Dateiinhalte und Dateimodi zum Herkunftscommit geprüft.
 - Für diese Spezialisierung lokale Header, Makefile, Konfiguration, Datenquellen und Dokumentation gelesen.
+- Im anschließenden Audit und Gegenreview 130 Host-Einzeltests sowie Syntax-, Karten-/Layout- und Musikprüfungen erfolgreich ausgeführt. Dokumentationsparser, Testvorbereitung und Root-CI korrigiert; Einzelheiten in `AUDIT.md`. Das sind keine ROM-/GPU-Testergebnisse. Der Gegenreview fand außerdem 26 bislang ungeklärte Layoutgrößenabweichungen; siehe `docs/known-layout-issues.json` und `docs/reviews/2026-11-09-design-review.md`.
 
 Nicht erledigt:
 

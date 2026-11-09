@@ -101,7 +101,7 @@ Replace `<output of nproc>` with the number that the `nproc` command returned.
 
 To build using a toolchain other than devkitARM, override the `TOOLCHAIN` environment variable with the path to your toolchain, which must contain the subdirectory `bin`.
 ```console
-make TOOLCHAIN="/path/to/toolchain/here
+make TOOLCHAIN="/path/to/toolchain/here"
 ```
 The following is an example:
 ```console

@@ -1,0 +1,239 @@
+{
+  "description": "Observed debt, not approved correctness. Changed/new mismatches fail checks; known mismatches remain release blockers pending reachability review.",
+  "issues": {
+    "LAYOUT_MART": {
+      "path": "data/layouts/Mart/map.bin",
+      "width": 11,
+      "height": 9,
+      "actual_bytes": 176,
+      "expected_bytes": 198,
+      "sha256": "fdbc8f485bfea91ca2e7fefdc51e73869e83c4ff358126172fc20b4983ff0b72",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CONTEST_ROOM1": {
+      "path": "data/layouts/UnusedContestRoom1/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "49d2277ab19ae9e6ddd1786ca8211538f3e1aa3d386beac1f78c4520f07e2fe0",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CONTEST_ROOM2": {
+      "path": "data/layouts/UnusedContestRoom2/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "af25c0d84f106d4b043cfa1cf203100169e8e21c24590ee19a0f698d607643aa",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CONTEST_ROOM3": {
+      "path": "data/layouts/UnusedContestRoom3/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "49d2277ab19ae9e6ddd1786ca8211538f3e1aa3d386beac1f78c4520f07e2fe0",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_PETALBURG_WOODS": {
+      "path": "data/layouts/PetalburgWoods/map.bin",
+      "width": 54,
+      "height": 44,
+      "actual_bytes": 4224,
+      "expected_bytes": 4752,
+      "sha256": "b8b2b0082025bd6382f79c51fd92dfe74d2a4a468646fb8536f3c943cc18e8fd",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1": {
+      "path": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/map.bin",
+      "width": 23,
+      "height": 40,
+      "actual_bytes": 1058,
+      "expected_bytes": 1840,
+      "sha256": "1ab47cc58d9da0f07f7dc4256bb6c0030148d97692522c0328069db9ac23b0a9",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2": {
+      "path": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/map.bin",
+      "width": 40,
+      "height": 40,
+      "actual_bytes": 882,
+      "expected_bytes": 3200,
+      "sha256": "7de7820d28c71cdd4f0e64360b1b92319a459583a1b0eb8032528d0e9c4a48ca",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE1": {
+      "path": "data/layouts/UnusedCave1/map.bin",
+      "width": 9,
+      "height": 10,
+      "actual_bytes": 4,
+      "expected_bytes": 180,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE2": {
+      "path": "data/layouts/UnusedCave2/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE3": {
+      "path": "data/layouts/UnusedCave3/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE4": {
+      "path": "data/layouts/UnusedCave4/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE5": {
+      "path": "data/layouts/UnusedCave5/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE6": {
+      "path": "data/layouts/UnusedCave6/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE7": {
+      "path": "data/layouts/UnusedCave7/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE8": {
+      "path": "data/layouts/UnusedCave8/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE9": {
+      "path": "data/layouts/UnusedCave9/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE10": {
+      "path": "data/layouts/UnusedCave10/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE11": {
+      "path": "data/layouts/UnusedCave11/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE12": {
+      "path": "data/layouts/UnusedCave12/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE13": {
+      "path": "data/layouts/UnusedCave13/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_UNUSED_CAVE14": {
+      "path": "data/layouts/UnusedCave14/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "a6968a923fa98f5652660916b6c1f83d318b4d80d8a5d7f9ce9c01a2f4d6977d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_CAVE_OF_ORIGIN_UNUSED_B4F_LAVA": {
+      "path": "data/layouts/CaveOfOrigin_Unused_B4F_Lava/map.bin",
+      "width": 19,
+      "height": 19,
+      "actual_bytes": 724,
+      "expected_bytes": 722,
+      "sha256": "0785e67aae84d633924b3ccc91c9b82223dd1182bb872cad9b9de5f921490b2c",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2": {
+      "path": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin",
+      "width": 17,
+      "height": 33,
+      "actual_bytes": 2976,
+      "expected_bytes": 1122,
+      "sha256": "de9832f69ecbe223f2e1b97b4fe95fbb247c9e460d87a8178e6be5e7af13b66d",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3": {
+      "path": "data/layouts/AquaHideout_UnusedRubyMap3/map.bin",
+      "width": 14,
+      "height": 14,
+      "actual_bytes": 1632,
+      "expected_bytes": 392,
+      "sha256": "8d32c4b99b907bed2d6186d1145af5f789af25e532ef107f2b665d39620a3714",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_UNUSED": {
+      "path": "data/layouts/BattleFrontier_BattlePikeRoomUnused/map.bin",
+      "width": 1,
+      "height": 1,
+      "actual_bytes": 4,
+      "expected_bytes": 2,
+      "sha256": "1ce68f9eeb9cde3f5bca8e335f7ea353f52fc060c46b809bed6ac58a79920954",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    },
+    "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE": {
+      "path": "data/layouts/LittlerootTown_ProfessorBirchsLabWithTable/map.bin",
+      "width": 13,
+      "height": 13,
+      "actual_bytes": 340,
+      "expected_bytes": 338,
+      "sha256": "fc2651c3e39e1793470ce66ff9c6e3b1b92fb74821ec44b83e755204eeb2eefe",
+      "status": "unresolved-upstream-data; reachability and intended dimensions unverified"
+    }
+  }
+}

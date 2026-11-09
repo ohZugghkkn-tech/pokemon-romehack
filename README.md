@@ -1,26 +1,57 @@
-# pokemon-romehack
+# SoulGold — persönliche Projektbasis
 
-Planung und Arbeitsgrundlage für persönliche Erweiterungen von Pokémon SoulGold (Emerald/GBA).
+Vollständig eingebundener **Pokémon-SoulGold-Quellcode** auf Emerald-/GBA-Basis plus separates Shaderpaket. Kein Submodul, kein eigener Emulator und kein nachgewiesen fertiges Spielrelease.
 
-## Inhalt
+## Komponenten
 
-- [ROMHACK-WISSEN.md](ROMHACK-WISSEN.md): Auf unseren SoulGold-Quellstand spezialisierte Codekarte, Build-/Save-Risiken und Vorlage für den nächsten Änderungsauftrag.
-- `soulgold/`: Vollständig übernommene, unveränderte Upstream-Dateien von Release 1.2.1 — kein Submodul.
-- [shaders/](shaders/README.md): Fertige ScaleFX-, Bevel- und Image-Adjustment-Shader mit Abhängigkeiten, Lizenzhinweisen und minimalem gemeinsamen Preset. Keine Emulator-Konfiguration.
+| Pfad | Aufgabe |
+|---|---|
+| [`soulgold/`](soulgold/) | Übernommener Spielquellcode mit wenigen dokumentierten lokalen Werkzeugkorrekturen |
+| [`shaders/`](shaders/README.md) | ScaleFX → Bevel → Image Adjustment; minimale gemeinsame Effektkette, keine Emulator-Konfiguration |
+| [`scripts/`](scripts/) | Host-Prüfungen und eigene Regressionstests |
+| [`UPSTREAM.json`](UPSTREAM.json) | Herkunftsstände; lokale Eingriffe in [`docs/upstream-changes.md`](docs/upstream-changes.md) |
 
-## Herkunft und Version
+Ein normaler Git-Klon enthält alle Projektdateien. Es ist kein Submodul-Update erforderlich. Shader bearbeiten das Bild außerhalb der ROM. Mew als Ersatz für einen Starter ist vorgemerkt, **noch nicht umgesetzt**.
 
-- Upstream: https://github.com/Eemeliri/soulgold
-- Release: **1.2.1**
-- Ursprünglicher Commit: `e73803309e78231142160b3e1029df884bc8b5f1`
-- Release-Notizen: https://github.com/Eemeliri/soulgold/releases/tag/1.2.1
+## Einstieg
 
-Alle in diesem Upstream-Commit versionierten Dateien wurden unter `soulgold/` direkt in dieses Repository übernommen, einschließlich der dortigen Dokumentation und Ignore-Regeln. Die Upstream-Git-Historie ist nicht Teil dieses Verzeichnisses. Ein normaler Klon dieses Repositories reicht aus; Submodul-Befehle sind nicht erforderlich. Eigene spätere Änderungen lassen sich direkt im selben Repository versionieren.
+Voraussetzungen und Einrichtung: **[TESTING.md](TESTING.md)**. Danach vom Repository-Root:
 
-## Aktueller Status
+```bash
+make help          # Einstiegspunkte anzeigen
+make check         # Hostprüfungen; kein Beleg für einen funktionierenden ROM-Build
+make rom           # Separater ARM-Build, benötigt Zieltoolchain
+make target-tests  # Vollständige ARM-/mGBA-Zieltests
+```
 
-SoulGold wurde eingebunden, aber nicht inhaltlich verändert oder gebaut. Es wurden keine zusätzlichen ROMs oder BIOS-Dateien beschafft; übernommen wurden die versionierten Upstream-Dateien. Es wurden keine Emulatortests ausgeführt. Build-Anleitung, Nutzungsbedingungen und Anforderungen des konkreten Quellstands müssen vor einer Implementierung geprüft werden.
+Mit eigener Python-Umgebung kann `make PYTHON=.venv/bin/python check` verwendet werden. Es gibt keinen automatischen Download von Spiel-ROMs und keine automatische Veröffentlichung.
 
-**Wichtige Einschränkung:** Das eingebundene Upstream-README erklärt ausdrücklich, dass dieser Quellstand etwas hinter der veröffentlichten Spielversion liegt. Tag und Versionsanzeige 1.2.1 belegen daher nicht, dass ein Build die veröffentlichte ROM 1.2.1 reproduziert. Die Kompatibilität vorhandener Spielstände ist ungeprüft. Details und belegte Einstiegspunkte stehen in der Wissensdatei.
+## Herkunft und wichtige Grenzen
 
-Als Nächstes wird ein konkreter Änderungsauftrag formuliert; eine Feature-Implementierung ist noch nicht beauftragt.
+- SoulGold-Upstream: https://github.com/Eemeliri/soulgold
+- Übernommener Tag: **1.2.1**, Commit `e73803309e78231142160b3e1029df884bc8b5f1`.
+- Das Upstream-README sagt ausdrücklich, dass dieser Quellstand hinter der veröffentlichten Spielversion liegt. Die Anzeige `v1.2.1` beweist weder dieselben Features noch dieselbe ROM oder Save-Kompatibilität.
+- Die Shader stammen unverändert aus einem fixierten libretro-Commit. Die Hauptsammlung hat keine pauschal angenommene einheitliche Lizenz; siehe [Shader-Lizenzhinweise](shaders/licenses/README.md).
+- Eine umfassende Rechteprüfung der übernommenen Spielassets ist nicht abgeschlossen. Es wird keine pauschale Root-Lizenz über fremde Werke behauptet.
+
+## Prüfstatus — getrennt nach Beleg
+
+| Bereich | Stand |
+|---|---|
+| Host-Regressionstests | Lokal erfolgreich; Verfahren in `TESTING.md` |
+| Karten-/Layoutprüfung | Referenzen geprüft; **26 bekannte Größenabweichungen offen**, nicht automatisch repariert |
+| ARM-Build und Zieltests | Eigener CI-Job definiert, Ergebnis noch ausstehend; lokal keine ARM-Toolchain |
+| Shaderkompilierung / visuelle Abnahme | Ausstehend |
+| Save-Kompatibilität | Ungeprüft |
+| Browserintegration | Separater Test, noch nicht ausgeführt |
+
+**Hosttests sind keine Release-Freigabe.** Bekannte Datenabweichungen: [`docs/known-layout-issues.json`](docs/known-layout-issues.json). Gründe und Grenzen der Korrekturen: [skeptischer Designreview](docs/reviews/2026-11-09-design-review.md).
+
+## Weiterarbeiten
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): kleine nachvollziehbare Änderungen, Zuständigkeiten und Reviewregeln.
+- [ROMHACK-WISSEN.md](ROMHACK-WISSEN.md): konkrete Codekarte und Vorlage für den gewünschten Spieleingriff.
+- [AUDIT.md](AUDIT.md): erste Prüfung mit ausdrücklich ergänzter Gegenprüfung.
+- [Freigabecheckliste](docs/RELEASE-CHECKLIST.md): Anforderungen vor einer Spiel-/Patchveröffentlichung.
+
+Keine Secrets, BIOS-Dateien, vollständigen Spiel-ROMs oder privaten Spielstände hochladen. Bei späteren Änderungen den Ursprung und die lokalen Eingriffe nachvollziehbar halten.
