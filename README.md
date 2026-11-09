@@ -4,8 +4,9 @@ Planung und Arbeitsgrundlage für persönliche Erweiterungen von Pokémon SoulGo
 
 ## Inhalt
 
-- [ROMHACK-WISSEN.md](ROMHACK-WISSEN.md): Technische Grundlagen und Planungs-/Übergabehinweise für spätere Arbeitssessions.
+- [ROMHACK-WISSEN.md](ROMHACK-WISSEN.md): Auf unseren SoulGold-Quellstand spezialisierte Codekarte, Build-/Save-Risiken und Vorlage für den nächsten Änderungsauftrag.
 - `soulgold/`: Vollständig übernommene, unveränderte Upstream-Dateien von Release 1.2.1 — kein Submodul.
+- [shaders/](shaders/README.md): Fertige ScaleFX-, Bevel- und Image-Adjustment-Shader mit Abhängigkeiten, Lizenzhinweisen und minimalem gemeinsamen Preset. Keine Emulator-Konfiguration.
 
 ## Herkunft und Version
 
@@ -20,4 +21,6 @@ Alle in diesem Upstream-Commit versionierten Dateien wurden unter `soulgold/` di
 
 SoulGold wurde eingebunden, aber nicht inhaltlich verändert oder gebaut. Es wurden keine zusätzlichen ROMs oder BIOS-Dateien beschafft; übernommen wurden die versionierten Upstream-Dateien. Es wurden keine Emulatortests ausgeführt. Build-Anleitung, Nutzungsbedingungen und Anforderungen des konkreten Quellstands müssen vor einer Implementierung geprüft werden.
 
-Die früheren Aussagen „kein Zielprojekt heruntergeladen“ in der Wissensdatei dokumentieren den damaligen Planungsstand. Mit der jetzigen Freigabe wurde der Quellcode eingebunden; eine Feature-Implementierung ist noch nicht beauftragt.
+**Wichtige Einschränkung:** Das eingebundene Upstream-README erklärt ausdrücklich, dass dieser Quellstand etwas hinter der veröffentlichten Spielversion liegt. Tag und Versionsanzeige 1.2.1 belegen daher nicht, dass ein Build die veröffentlichte ROM 1.2.1 reproduziert. Die Kompatibilität vorhandener Spielstände ist ungeprüft. Details und belegte Einstiegspunkte stehen in der Wissensdatei.
+
+Als Nächstes wird ein konkreter Änderungsauftrag formuliert; eine Feature-Implementierung ist noch nicht beauftragt.

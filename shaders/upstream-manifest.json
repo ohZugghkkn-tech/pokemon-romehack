@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/libretro/slang-shaders",
+  "commit": "2345ee91602a7404d3a1a6a5df6108d7305fdad4",
+  "files": {
+    "stock.slang": "fa7d346e3706a351aa77dc8e77bd049b8bfde635baf4376fedcf81f38d9a4008",
+    "edge-smoothing/scalefx/scalefx.slangp": "016739a084bd0f88f364d7a5994ce53bd166e29859e2b98b1af47e900674fe3f",
+    "edge-smoothing/scalefx/shaders/scalefx-pass0.slang": "a88c923b196539d7ac1a690e4e868397213d9659d512edb0d1c6f7675b0b1d73",
+    "edge-smoothing/scalefx/shaders/scalefx-pass1.slang": "b1ea2dc411e208cdda8eb8598f290f9ebc7ad7a9f1351baac4fd5fca35e9d645",
+    "edge-smoothing/scalefx/shaders/scalefx-pass2.slang": "3fcdec55b816c63f8cd3cf0d5bed08b52abe987e16e7fe03408a82668138b4f2",
+    "edge-smoothing/scalefx/shaders/scalefx-pass3.slang": "99b18adb46e09c7b96d4c103c4daec08d5f70a120cf2070fb35af1a21969bd3f",
+    "edge-smoothing/scalefx/shaders/scalefx-pass4.slang": "964a07239e628f1a7fe7284b941144f96df27980fc084dbde28ff417a79b98c6",
+    "handheld/bevel.slangp": "0b3b18920e23c1963394e2c0c76e1e5ab4a3df3a485a10f90373c06e9fd11faf",
+    "handheld/shaders/bevel.slang": "6a0bbc11bd535c236f4c434a0ef399ddf0a74d70fd5597cf939f7efecdbe818f",
+    "misc/image-adjustment.slangp": "a9f88e91c9b8aae4255779cd10e804602a9631ebf0a6ef5654dc9c1c93abc8dc",
+    "misc/shaders/image-adjustment.slang": "e608b1dd71d660d2ce8a77ee3e3a62ad5047d50a75adc8db7b4a1b7c1be83e2d",
+    "include/colorspace-tools.h": "a8845b280869c495790cfc8e6a88d5eee2865f4c640c1b6e1e9792c61498e155"
+  }
+}
